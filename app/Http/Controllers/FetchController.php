@@ -261,6 +261,85 @@ public function currencies(Request $request)
 }
 
 /**
+* Return Youtube data from API.
+*
+* @param  \Illuminate\Http\Request  $request
+* @return \Illuminate\Http\Response
+*/
+public function youtube(Request $request)
+{
+  $query = $request->search;
+
+  // GET https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=surfing&key=[YOUR_API_KEY] HTTP/1.1
+  //
+  // Authorization: Bearer [YOUR_ACCESS_TOKEN]
+  // Accept: application/json
+
+  // set API Endpoint and API key
+  $access_key = config('app.youtube_key', '');
+
+  if (!empty($query)) {
+  $response = Http::get('https://www.googleapis.com/youtube/v3/search', [
+    'q' => $query,
+    'part' => 'snippet',
+    'maxResults' => '12',
+    'type' => 'video',
+    'key' => $access_key,
+  ]);
+  } else {
+    return response()->json(['status' => 'FAIL',
+    'error' => 'Enter a query',
+    ]);
+  }
+
+  if (empty($response->json())) {
+    return response()->json(['status' => 'FAIL',
+      'error' => 'No datas for this entry',
+    ]);
+  } else {
+    return $response->json();
+  }
+}
+
+
+/**
+* Return TMDB data from API.
+*
+* @param  \Illuminate\Http\Request  $request
+* @return \Illuminate\Http\Response
+*/
+public function movies(Request $request)
+{
+  $query = $request->search;
+
+  // set API Endpoint and API key
+  $access_key = config('app.tmdb_key', '');
+
+  if (!empty($query)) {
+  $response = Http::get('https://api.themoviedb.org/3/search/movie', [
+    'query' => $query,
+    'api_key' => $access_key,
+  ]);
+  } else {
+    return response()->json(['status' => 'FAIL',
+    'error' => 'Enter a query',
+    ]);
+  }
+
+  if (empty($response->json())) {
+    return response()->json(['status' => 'FAIL',
+      'error' => 'No datas for this entry',
+    ]);
+  } else {
+    return $response->json();
+  }
+}
+
+
+
+
+
+/**
 * Show the form for creating a new resource.
 *
 * @return \Illuminate\Http\Response

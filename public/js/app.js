@@ -49728,6 +49728,8 @@ __webpack_require__(/*! ./currenciesFetch */ "./resources/js/currenciesFetch.js"
 
 __webpack_require__(/*! ./mapFetch */ "./resources/js/mapFetch.js");
 
+__webpack_require__(/*! ./moviesFetch */ "./resources/js/moviesFetch.js");
+
 __webpack_require__(/*! ./searchFetch */ "./resources/js/searchFetch.js");
 
 __webpack_require__(/*! ./stocksFetch */ "./resources/js/stocksFetch.js");
@@ -49735,6 +49737,8 @@ __webpack_require__(/*! ./stocksFetch */ "./resources/js/stocksFetch.js");
 __webpack_require__(/*! ./verifyFetch */ "./resources/js/verifyFetch.js");
 
 __webpack_require__(/*! ./weatherFetch */ "./resources/js/weatherFetch.js");
+
+__webpack_require__(/*! ./youtubeFetch */ "./resources/js/youtubeFetch.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
@@ -50006,6 +50010,54 @@ function initMap(lat, lon) {
 
 /***/ }),
 
+/***/ "./resources/js/moviesFetch.js":
+/*!*************************************!*\
+  !*** ./resources/js/moviesFetch.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var moviesPOST = document.getElementById('moviesPOST');
+var moviesBlock = document.getElementById('moviesBlock');
+var moviesReponse = document.getElementById('moviesReponse');
+var moviesTitle = document.getElementById('moviesTitle');
+var moviesPoster = document.getElementById('moviesPoster');
+var moviesAbstract = document.getElementById('moviesAbstract');
+var moviesDate = document.getElementById('moviesDate');
+var moviesVote = document.getElementById('moviesVote');
+var token = document.querySelector('meta[name="csrf-token"]').content;
+moviesPOST.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var url = this.getAttribute('action');
+  postData = new FormData(moviesPOST);
+  fetch(url, {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      "X-CSRF-TOKEN": token
+    },
+    body: postData
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    console.log(data);
+    moviesReponse.innerHTML = JSON.stringify(data, undefined, 2);
+
+    if (data.status != 'FAIL') {
+      moviesBlock.style.display = "flex";
+      moviesTitle.innerHTML = data.results[0].title;
+      moviesPoster.src = 'https://image.tmdb.org/t/p/w500/' + data.results[0].poster_path;
+      moviesAbstract.innerHTML = data.results[0].overview;
+      moviesDate.innerHTML = data.results[0].release_date;
+      moviesVote.innerHTML = data.results[0].vote_average;
+    }
+  })["catch"](function (err) {
+    console.log(err);
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/searchFetch.js":
 /*!*************************************!*\
   !*** ./resources/js/searchFetch.js ***!
@@ -50266,6 +50318,53 @@ weatherPOST.addEventListener('submit', function (e) {
       weatherResult.innerHTML = data.weather[0].description;
       weatherIcon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
       weatherRate.innerHTML = "<b>" + data.main.temp + "&#8451;</b>";
+    }
+  })["catch"](function (err) {
+    console.log(err);
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/youtubeFetch.js":
+/*!**************************************!*\
+  !*** ./resources/js/youtubeFetch.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var youtubePOST = document.getElementById('youtubePOST');
+var youtubeBlock = document.getElementById('youtubeBlock');
+var youtubeReponse = document.getElementById('youtubeReponse');
+var youtubeFrame = [];
+
+for (var i = 1; i < 13; i++) {
+  youtubeFrame[i] = document.getElementById('youtubeFrame-' + i);
+}
+
+var token = document.querySelector('meta[name="csrf-token"]').content;
+youtubePOST.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var url = this.getAttribute('action');
+  postData = new FormData(youtubePOST);
+  fetch(url, {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      "X-CSRF-TOKEN": token
+    },
+    body: postData
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    console.log(data);
+    youtubeReponse.innerHTML = JSON.stringify(data, undefined, 2);
+
+    if (data.status != 'FAIL') {
+      youtubeBlock.style.display = "flex";
+      data.items.forEach(function (item, i) {
+        youtubeFrame[i + 1].src = typeof item.id.videoId !== 'undefined' ? 'https://www.youtube.com/embed/' + item.id.videoId : '';
+      });
     }
   })["catch"](function (err) {
     console.log(err);

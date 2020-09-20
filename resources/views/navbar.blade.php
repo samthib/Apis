@@ -9,7 +9,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarColor01">
-    
+
     <ul class="navbar-nav mr-auto" id="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="{{ route('fetch.index') }}">Home <span class="sr-only">(current)</span></a>

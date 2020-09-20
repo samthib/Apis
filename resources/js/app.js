@@ -8,10 +8,12 @@
  require('./highlight-tab');
  require('./currenciesFetch');
  require('./mapFetch');
+ require('./moviesFetch');
  require('./searchFetch');
  require('./stocksFetch');
  require('./verifyFetch');
  require('./weatherFetch');
+ require('./youtubeFetch');
 
 window.Vue = require('vue');
 
