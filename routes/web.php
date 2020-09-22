@@ -27,6 +27,7 @@ Route::post('/search', 'FetchController@search')->name('fetch.search');
 Route::post('/stocks', 'FetchController@stocks')->name('fetch.stocks');
 Route::post('/currencies', 'FetchController@currencies')->name('fetch.currencies');
 Route::post('/movies', 'FetchController@movies')->name('fetch.movies');
+Route::post('/photos', 'FetchController@photos')->name('fetch.photos');
 Route::post('/youtube', 'FetchController@youtube')->name('fetch.youtube');
 
 

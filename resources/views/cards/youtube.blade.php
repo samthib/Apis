@@ -24,7 +24,7 @@
       <div class="my-2">
         <div id="youtubeBlock" class="flex-column justify-content-between response-block" style="display: none;">
 
-          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div id="carouselYoutubeControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="embed-responsive embed-responsive-16by9">
@@ -46,11 +46,11 @@
               @endfor
             </div>
 
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <a class="carousel-control-prev" href="#carouselYoutubeControls" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <a class="carousel-control-next" href="#carouselYoutubeControls" role="button" data-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>

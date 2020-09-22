@@ -29,6 +29,8 @@
 
       @include('cards.movies')
 
+      @include('cards.photos')
+
       {{-- @include('cards.news')
 
       @include('cards.football')

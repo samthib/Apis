@@ -9,6 +9,7 @@
  require('./currenciesFetch');
  require('./mapFetch');
  require('./moviesFetch');
+ require('./photosFetch');
  require('./searchFetch');
  require('./stocksFetch');
  require('./verifyFetch');
