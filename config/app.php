@@ -125,11 +125,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Nexmo Key
+    | APIs Keys
     |--------------------------------------------------------------------------
     |
-    | This keys are from Nexmo(Vonage) to use with the nexmo's API. Keep it secret!
-    |
+    | This keys are from Nexmo(Vonage) to use with the nexmo's API.
+    | Keep it secret!
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | Nexmo Key
+    |--------------------------------------------------------------------------
     */
 
     'nexmo_key' => env('NEXMO_KEY', ''),
@@ -140,10 +146,6 @@ return [
     |--------------------------------------------------------------------------
     | OpenWheaterMap Key
     |--------------------------------------------------------------------------
-    |
-    | This keys are from OpenWheaterMap to use with the OpenWheaterMap's API.
-    | Keep it secret!
-    |
     */
 
     'openwheatermap_key' => env('OPENWHEATERMAP_KEY', ''),
@@ -152,10 +154,6 @@ return [
     |--------------------------------------------------------------------------
     | Finnhub Key
     |--------------------------------------------------------------------------
-    |
-    | This keys are from Finnhub to use with the Finnhub's API.
-    | Keep it secret!
-    |
     */
 
     'finnhub_key' => env('FINNHUB_KEY', ''),
@@ -164,50 +162,45 @@ return [
     |--------------------------------------------------------------------------
     | Fixer.io Key
     |--------------------------------------------------------------------------
-    |
-    | This keys are from Fixer to use with the Fixer's API.
-    | Keep it secret!
-    |
     */
 
     'fixer_key' => env('FIXER_KEY', ''),
 
     /*
     |--------------------------------------------------------------------------
-    | Youtube.com Key
+    | Youtube Key
     |--------------------------------------------------------------------------
-    |
-    | This keys are from Youtube to use with the Youtube's API.
-    | Keep it secret!
-    |
     */
 
     'youtube_key' => env('YOUTUBE_KEY', ''),
 
     /*
     |--------------------------------------------------------------------------
-    | Youtube.com Key
+    | TMDB Key
     |--------------------------------------------------------------------------
-    |
-    | This keys are from Youtube to use with the Youtube's API.
-    | Keep it secret!
-    |
     */
 
     'tmdb_key' => env('TMDB_KEY', ''),
 
     /*
     |--------------------------------------------------------------------------
-    | Nexmo Key
+    | Flickr Key
     |--------------------------------------------------------------------------
-    |
-    | This keys are from Nexmo(Vonage) to use with the nexmo's API. Keep it secret!
-    |
     */
 
     'flickr_key' => env('FLICKR_KEY', ''),
 
     'flickr_secret' => env('FLICKR_SECRET', ''),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Yelp Key
+    |--------------------------------------------------------------------------
+    */
+
+    'yelp_client_id' => env('YELP_CLIENT_ID', ''),
+
+    'yelp_key' => env('YELP_KEY', ''),
 
     /*
     |--------------------------------------------------------------------------

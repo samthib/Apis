@@ -49724,6 +49724,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./highlight-tab */ "./resources/js/highlight-tab.js");
 
+__webpack_require__(/*! ./businessFetch */ "./resources/js/businessFetch.js");
+
 __webpack_require__(/*! ./currenciesFetch */ "./resources/js/currenciesFetch.js");
 
 __webpack_require__(/*! ./mapFetch */ "./resources/js/mapFetch.js");
@@ -49807,6 +49809,62 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/businessFetch.js":
+/*!***************************************!*\
+  !*** ./resources/js/businessFetch.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var businessPOST = document.getElementById('businessPOST');
+var businessBlock = document.getElementById('businessBlock');
+var businessReponse = document.getElementById('businessReponse');
+var businessImage = [];
+var businessTitle = [];
+var businessAdress = [];
+var businessNote = [];
+
+for (var i = 1; i < 13; i++) {
+  businessImage[i] = document.getElementById('businessImage-' + i);
+  businessTitle[i] = document.getElementById('businessTitle-' + i);
+  businessAdress[i] = document.getElementById('businessAdress-' + i);
+  businessNote[i] = document.getElementById('businessNote-' + i);
+}
+
+var token = document.querySelector('meta[name="csrf-token"]').content;
+businessPOST.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var url = this.getAttribute('action');
+  postData = new FormData(businessPOST);
+  fetch(url, {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      "X-CSRF-TOKEN": token
+    },
+    body: postData
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    console.log(data);
+    businessReponse.innerHTML = JSON.stringify(data, undefined, 2);
+
+    if (data.status != 'FAIL') {
+      businessBlock.style.display = "flex";
+      data.businesses.forEach(function (item, i) {
+        businessImage[i + 1].src = typeof item.id !== 'undefined' ? item.image_url : '';
+        businessTitle[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.name : '';
+        businessAdress[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.location.display_address[0] + '<br>' + item.location.display_address[1] + '<br>' + item.location.display_address[2] + '<br>' : '';
+        businessNote[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.rating : '';
+      });
+    }
+  })["catch"](function (err) {
+    console.log(err);
+  });
+});
 
 /***/ }),
 
@@ -50026,7 +50084,7 @@ var moviesTitle = document.getElementById('moviesTitle');
 var moviesPoster = document.getElementById('moviesPoster');
 var moviesAbstract = document.getElementById('moviesAbstract');
 var moviesDate = document.getElementById('moviesDate');
-var moviesVote = document.getElementById('moviesVote');
+var moviesNote = document.getElementById('moviesNote');
 var token = document.querySelector('meta[name="csrf-token"]').content;
 moviesPOST.addEventListener('submit', function (e) {
   e.preventDefault();
@@ -50051,7 +50109,7 @@ moviesPOST.addEventListener('submit', function (e) {
       moviesPoster.src = 'https://image.tmdb.org/t/p/w500/' + data.results[0].poster_path;
       moviesAbstract.innerHTML = data.results[0].overview;
       moviesDate.innerHTML = data.results[0].release_date;
-      moviesVote.innerHTML = data.results[0].vote_average;
+      moviesNote.innerHTML = data.results[0].vote_average;
     }
   })["catch"](function (err) {
     console.log(err);

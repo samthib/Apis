@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
       <h5 class="">API description</h5>
-      <p class="card-text">Search a list of videos from Youtube famous website.</p>
+      <p class="card-text">Search a list of videos from Youtube website.</p>
 
       <form class="" id="youtubePOST" action="{{ route('fetch.youtube') }}">
         <div class="row">
@@ -22,7 +22,7 @@
       </form>
 
       <div class="my-2">
-        <div id="youtubeBlock" class="flex-column justify-content-between response-block" style="display: none;">
+        <div id="youtubeBlock" class="flex-column justify-content-between" style="display: none;">
 
           <div id="carouselYoutubeControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">

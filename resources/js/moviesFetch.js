@@ -5,7 +5,7 @@ var moviesTitle = document.getElementById('moviesTitle');
 var moviesPoster = document.getElementById('moviesPoster');
 var moviesAbstract = document.getElementById('moviesAbstract');
 var moviesDate = document.getElementById('moviesDate');
-var moviesVote = document.getElementById('moviesVote');
+var moviesNote = document.getElementById('moviesNote');
 
 const token = document.querySelector('meta[name="csrf-token"]').content;
 
@@ -38,7 +38,7 @@ moviesPOST.addEventListener('submit', function(e) {
       moviesPoster.src = 'https://image.tmdb.org/t/p/w500/'+data.results.[0].poster_path;
       moviesAbstract.innerHTML = data.results.[0].overview;
       moviesDate.innerHTML = data.results.[0].release_date;
-      moviesVote.innerHTML = data.results.[0].vote_average;
+      moviesNote.innerHTML = data.results.[0].vote_average;
     }
   })
   .catch(err => {

@@ -22,7 +22,7 @@
       </form>
 
       <div class="my-2">
-        <div id="photosBlock" class="flex-column justify-content-between response-block" style="display: none;">
+        <div id="photosBlock" class="flex-column justify-content-between" style="display: none;">
 
           <div id="carouselPhotosControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">

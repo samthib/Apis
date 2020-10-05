@@ -23,35 +23,35 @@ class FetchController extends Controller
     return view('index')->with('symbols', $symbols);
   }
 
-  /**
-  * Return map data from API.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
-  */
-  public function map(Request $request)
-  {
-    $adress = $request->number.",".$request->street.",".$request->city.",".$request->country;
+/**
+* Return map data from API.
+*
+* @param  \Illuminate\Http\Request  $request
+* @return \Illuminate\Http\Response
+*/
+public function map(Request $request)
+{
+  $adress = $request->number.",".$request->street.",".$request->city.",".$request->country;
 
-    if (!empty($request->city)) {
-      $response = Http::get('https://nominatim.openstreetmap.org/search', [
-        'q' => $adress,
-        'format' => 'json',
-      ]);
-    } else {
-      return response()->json(['status' => 'FAIL',
-        'error' => 'Enter a correct adress',
-      ]);
-    }
-
-    if (empty($response->json())) {
-      return response()->json(['status' => 'FAIL',
-        'error' => 'No datas for this entry',
-      ]);
-    } else {
-      return $response->json();
-    }
+  if (!empty($request->city)) {
+    $response = Http::get('https://nominatim.openstreetmap.org/search', [
+      'q' => $adress,
+      'format' => 'json',
+    ]);
+  } else {
+    return response()->json(['status' => 'FAIL',
+      'error' => 'Enter a correct adress',
+    ]);
   }
+
+  if (empty($response->json())) {
+    return response()->json(['status' => 'FAIL',
+      'error' => 'No datas for this entry',
+    ]);
+  } else {
+    return $response->json();
+  }
+}
 
 /**
 * Return weather data from API.
@@ -270,11 +270,6 @@ public function youtube(Request $request)
 {
   $query = $request->search;
 
-  // GET https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=surfing&key=[YOUR_API_KEY] HTTP/1.1
-  //
-  // Authorization: Bearer [YOUR_ACCESS_TOKEN]
-  // Accept: application/json
-
   // set API Endpoint and API key
   $access_key = config('app.youtube_key', '');
 
@@ -320,9 +315,48 @@ public function photos(Request $request)
     'per_page' => '12',
     'media' => 'photos',
     'method' => 'flickr.photos.search',
+    'safe_search' => '1',
+    'content_type' => '1',
     'api_key' => $access_key,
     'format' => 'json',
     'nojsoncallback' => '1',
+  ]);
+  } else {
+    return response()->json(['status' => 'FAIL',
+    'error' => 'Enter a query',
+    ]);
+  }
+
+  if (empty($response->json())) {
+    return response()->json(['status' => 'FAIL',
+      'error' => 'No datas for this entry',
+    ]);
+  } else {
+    return $response->json();
+  }
+}
+
+/**
+* Return business data from API.
+*
+* @param  \Illuminate\Http\Request  $request
+* @return \Illuminate\Http\Response
+*/
+public function business(Request $request)
+{
+  $query = $request->search;
+  $location = $request->location;
+
+  // set API Endpoint and API key
+  $access_key = config('app.yelp_key', '');
+
+  if (!empty($query)) {
+  $response = Http::withHeaders([
+    'Authorization' => 'Bearer '.$access_key,
+  ])->get('https://api.yelp.com/v3/businesses/search', [
+    'term' => $query,
+    'location' => $location,
+    'limit' => '12',
   ]);
   } else {
     return response()->json(['status' => 'FAIL',

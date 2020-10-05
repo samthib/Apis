@@ -6,6 +6,7 @@
 
  require('./bootstrap');
  require('./highlight-tab');
+ require('./businessFetch');
  require('./currenciesFetch');
  require('./mapFetch');
  require('./moviesFetch');

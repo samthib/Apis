@@ -30,7 +30,7 @@
           <p id="moviesAbstract" class="px-2"></p>
           <div class="w-100 d-flex flex-row justify-content-around align-items-baseline px-2">
             <p>Release : <span id="moviesDate"></span></p>
-            <h3>Note : <span id="moviesVote" class="text-info"></span></h3>
+            <h3>Note : <span id="moviesNote" class="text-info"></span></h3>
           </div>
 
         </div>
