@@ -6,29 +6,30 @@
   <div class="container-fluid p-5">
     <div class="row">
 
-      @include('cards.photos')
+      @include('cards.twitter')
 
       @include('cards.youtube')
 
       @include('cards.movies')
 
-      @include('cards.verify')
-
-      @include('cards.map')
-
-      @include('cards.weather')
+      @include('cards.photos')
 
       @include('cards.search')
-
-      @include('cards.stocks')
 
       @include('cards.currencies')
 
       @include('cards.business')
 
-      {{-- @include('cards.twitter')
+      @include('cards.map')
 
-      @include('cards.instagram')
+      @include('cards.verify')
+
+      @include('cards.weather')
+
+      @include('cards.stocks')
+
+
+      {{-- @include('cards.instagram')
 
       @include('cards.facebook')
 

@@ -13,6 +13,7 @@
  require('./photosFetch');
  require('./searchFetch');
  require('./stocksFetch');
+ require('./twitterFetch');
  require('./verifyFetch');
  require('./weatherFetch');
  require('./youtubeFetch');

@@ -29,9 +29,7 @@
             </div>
             <small><a href="" id="searchUrl"></a></small>
             <div class="my-4">
-              <p class="my-0" id="searchAbstract">
-
-              </p>
+              <p class="my-0" id="searchAbstract"></p>
               <a href="" id="searchAbstractUrl"></a>
             </div>
 

@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
       <h5 class="">API description</h5>
-      <p class="card-text">Search a list of photos from Flickr famous website.</p>
+      <p class="card-text">Search a list of photos and pictures from Flickr famous website.</p>
 
       <form class="" id="photosPOST" action="{{ route('fetch.photos') }}">
         <div class="row">
