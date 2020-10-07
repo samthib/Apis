@@ -3,7 +3,7 @@
     <div class="card-header">
       <h5 class="card-title">Currency Converter API</h5>
       <a href="https://fixer.io/" target="_blank">
-        <img class="card-icon" src="{{ asset('storage/img//fixer_money_light.png') }}" alt="">
+        <img class="card-icon" src="{{ asset('storage/img/fixer_money_light.png') }}" alt="">
       </a>
     </div>
     <div class="card-body">

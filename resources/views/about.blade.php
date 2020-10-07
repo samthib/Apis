@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container p-5">
     <!-- Example row of columns -->
     <div class="row">
       <div class="col-md-4">
@@ -31,7 +31,6 @@
       </div>
     </div>
 
-    <hr>
 
   </div> <!-- /container -->
 
