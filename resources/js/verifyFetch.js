@@ -43,6 +43,8 @@ verifyPOST.addEventListener('submit', function(e) {
     } else {
       verifyResult.innerHTML = "<span class='text-danger'>Error &#10008;</span>"
     }
+
+    hljs.highlightBlock(verifyReponse);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

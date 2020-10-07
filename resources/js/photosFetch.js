@@ -40,6 +40,7 @@ photosPOST.addEventListener('submit', function(e) {
         photosTitle[i+1].innerHTML = typeof item.id !== 'undefined' ? item.title : '';
       });
     }
+    hljs.highlightBlock(photosReponse);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

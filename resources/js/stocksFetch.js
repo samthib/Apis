@@ -48,6 +48,8 @@ stocksPOST.addEventListener('submit', function(e) {
       stocksO.innerHTML = data.o;
       stocksL.innerHTML = data.l;
     }
+
+    hljs.highlightBlock(stocksReponse);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

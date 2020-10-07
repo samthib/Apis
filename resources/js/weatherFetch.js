@@ -34,6 +34,8 @@ weatherPOST.addEventListener('submit', function(e) {
       weatherIcon.src = "http://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png";
       weatherRate.innerHTML = "<b>"+data.main.temp+"&#8451;</b>";
     }
+
+    hljs.highlightBlock(weatherReponse);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

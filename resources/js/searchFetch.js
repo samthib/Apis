@@ -98,8 +98,9 @@ searchPOST.addEventListener('submit', function(e) {
           searchLinkIcon6.children[0].children[0] = 'Youtube';
         }
       });
-
     }
+
+    hljs.highlightBlock(searchReponse);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

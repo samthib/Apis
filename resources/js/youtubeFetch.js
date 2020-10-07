@@ -36,8 +36,9 @@ youtubePOST.addEventListener('submit', function(e) {
       data.items.forEach((item, i) => {
         youtubeFrame[(i+1)].src = typeof item.id.videoId !== 'undefined' ? 'https://www.youtube.com/embed/'+item.id.videoId : '';
       });
-
     }
+
+    hljs.highlightBlock(youtubeReponse);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

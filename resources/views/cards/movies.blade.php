@@ -36,9 +36,7 @@
         </div>
       </div>
 
-      <fieldset class="form-group">
-        <textarea id="moviesReponse" class="response form-control" rows="5" placeholder="API Response" readonly></textarea>
-      </fieldset>
+      <pre><code id="moviesReponse" class="json response border rounded text-left">{"API" : "Response here"}</code></pre>
 
     </div>
 

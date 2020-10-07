@@ -35,6 +35,8 @@ currenciesPOST.addEventListener('submit', function(e) {
       currenciesRate.innerHTML = "1"+" "+data.base+"  &rlhar; "+data.rates[keys[0]].toPrecision(5)+" "+keys[0];
       currenciesRateInverse.innerHTML = "1"+" "+keys[0]+" &lrhar; "+(1/data.rates[keys[0]]).toPrecision(5)+" "+data.base;
     }
+
+    hljs.highlightBlock(currenciesReponse);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

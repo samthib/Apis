@@ -77,9 +77,7 @@
         </div>
       </div>
 
-      <fieldset class="form-group">
-        <textarea id="searchReponse" class="response form-control" rows="5" placeholder="API Response" readonly></textarea>
-      </fieldset>
+      <pre><code id="searchReponse" class="json response border rounded text-left">{"API" : "Response here"}</code></pre>
 
     </div>
     <div class="card-footer">

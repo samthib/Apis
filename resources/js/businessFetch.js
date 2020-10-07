@@ -46,6 +46,8 @@ businessPOST.addEventListener('submit', function(e) {
         businessNote[i+1].innerHTML = typeof item.id !== 'undefined' ? item.rating : '';
       });
     }
+
+    hljs.highlightBlock(businessReponse);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

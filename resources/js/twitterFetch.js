@@ -41,13 +41,14 @@ twitterPOST.addEventListener('submit', function(e) {
       twitterTitle.innerHTML = data.data.name;
       twitterUsername.innerHTML = '@'+data.data.username;
       twitterIcon.src = data.data.profile_image_url;
-      console.log(data.data.verified);
       twitterVerified.style.display = data.data.verified ? "inline-block" : "none";
       twitterUrl.innerHTML = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].display_url : '';
       twitterUrl.href = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].expanded_url : '';
       twitterFollowers.innerHTML = data.data.public_metrics.followers_count;
       twitterFollowing.innerHTML = data.data.public_metrics.following_count;
     }
+    
+    hljs.highlightBlock(twitterReponse);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

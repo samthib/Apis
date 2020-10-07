@@ -10912,6 +10912,10 @@ body {
   background-color: rgb(24, 107, 147);
 }
 
+a {
+  text-decoration: none;
+}
+
 .navbar,
 .footer {
   background-color: var(--header-footer-background);
@@ -10970,6 +10974,10 @@ body {
 .response.form-control[readonly] {
   color: yellow;
   background-color: rgb(0, 0, 45);
+}
+
+.response {
+  height: 140px;
 }
 
 .feature-icon {

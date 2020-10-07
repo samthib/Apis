@@ -17,9 +17,10 @@
       <div class="container">
         <h1 class="display-3">Hello, world!</h1>
         <p>I'm <b>Samuel Thibault, Web Developer</b>. I made this website to show you what you can do whith APIs datas.</p>
-        <p>If you have an idea about exploiting datas don't hesitate to contact me, we will discuss on how I can help you.</p>
-        <p>If you have the need of a website for you or your business, if you need online presence I can assist you.</p>
-        <p>You can take a look at my <a href="http://samuel-thibault.fr" style="text-decoration:none" target="_blank"><b>website</b></a> to see my others works.</p>
+        <p>If you have an idea on exploiting datas don't hesitate to contact me, we will discuss on how I can help you.</p>
+        <p>I can either build your own API to provide your datas to the world or selected users. Look at this simple <a class="text-primary" href="http://messenger-api.samuel-thibault.fr" target="_blank"><b>example</b></a>.</p>
+        <p>If you need online presence with a website for you or your business, I can assist you.</p>
+        <p>You can take a look at my <a class="text-primary" href="http://samuel-thibault.fr" target="_blank"><b>website</b></a> to see my others works.</p>
         <p><a class="btn btn-info btn-lg" href="{{ route('contact.create') }}" role="button">Contact me</a></p>
       </div>
     </div>

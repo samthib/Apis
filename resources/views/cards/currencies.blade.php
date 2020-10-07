@@ -36,10 +36,7 @@
         </div>
       </div>
 
-
-      <fieldset class="form-group">
-        <textarea id="currenciesReponse" class="response form-control" rows="5" placeholder="API Response" readonly></textarea>
-      </fieldset>
+      <pre><code id="currenciesReponse" class="json response border rounded text-left">{"API" : "Response here"}</code></pre>
 
     </div>
     <div class="card-footer">

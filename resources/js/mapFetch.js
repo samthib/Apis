@@ -34,6 +34,8 @@ mapPOST.addEventListener('submit', function(e) {
       mapBlock.className = "d-none";
       mapBlock.style.height = "0px";
     }
+
+    hljs.highlightBlock(mapReponse);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

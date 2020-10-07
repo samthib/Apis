@@ -49863,6 +49863,8 @@ businessPOST.addEventListener('submit', function (e) {
         businessNote[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.rating : '';
       });
     }
+
+    hljs.highlightBlock(businessReponse); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -49977,6 +49979,8 @@ currenciesPOST.addEventListener('submit', function (e) {
       currenciesRate.innerHTML = "1" + " " + data.base + "  &rlhar; " + data.rates[keys[0]].toPrecision(5) + " " + keys[0];
       currenciesRateInverse.innerHTML = "1" + " " + keys[0] + " &lrhar; " + (1 / data.rates[keys[0]]).toPrecision(5) + " " + data.base;
     }
+
+    hljs.highlightBlock(currenciesReponse); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50045,6 +50049,8 @@ mapPOST.addEventListener('submit', function (e) {
       mapBlock.className = "d-none";
       mapBlock.style.height = "0px";
     }
+
+    hljs.highlightBlock(mapReponse); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50113,6 +50119,8 @@ moviesPOST.addEventListener('submit', function (e) {
       moviesDate.innerHTML = data.results[0].release_date;
       moviesNote.innerHTML = data.results[0].vote_average;
     }
+
+    hljs.highlightBlock(moviesReponse); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50163,6 +50171,8 @@ photosPOST.addEventListener('submit', function (e) {
         photosTitle[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.title : '';
       });
     }
+
+    hljs.highlightBlock(photosReponse); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50274,6 +50284,8 @@ searchPOST.addEventListener('submit', function (e) {
         }
       });
     }
+
+    hljs.highlightBlock(searchReponse); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50335,6 +50347,8 @@ stocksPOST.addEventListener('submit', function (e) {
       stocksO.innerHTML = data.o;
       stocksL.innerHTML = data.l;
     }
+
+    hljs.highlightBlock(stocksReponse); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50386,13 +50400,14 @@ twitterPOST.addEventListener('submit', function (e) {
       twitterTitle.innerHTML = data.data.name;
       twitterUsername.innerHTML = '@' + data.data.username;
       twitterIcon.src = data.data.profile_image_url;
-      console.log(data.data.verified);
       twitterVerified.style.display = data.data.verified ? "inline-block" : "none";
       twitterUrl.innerHTML = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].display_url : '';
       twitterUrl.href = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].expanded_url : '';
       twitterFollowers.innerHTML = data.data.public_metrics.followers_count;
       twitterFollowing.innerHTML = data.data.public_metrics.following_count;
     }
+
+    hljs.highlightBlock(twitterReponse); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50445,6 +50460,8 @@ verifyPOST.addEventListener('submit', function (e) {
     } else {
       verifyResult.innerHTML = "<span class='text-danger'>Error &#10008;</span>";
     }
+
+    hljs.highlightBlock(verifyReponse); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50489,6 +50506,8 @@ weatherPOST.addEventListener('submit', function (e) {
       weatherIcon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
       weatherRate.innerHTML = "<b>" + data.main.temp + "&#8451;</b>";
     }
+
+    hljs.highlightBlock(weatherReponse); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50536,6 +50555,8 @@ youtubePOST.addEventListener('submit', function (e) {
         youtubeFrame[i + 1].src = typeof item.id.videoId !== 'undefined' ? 'https://www.youtube.com/embed/' + item.id.videoId : '';
       });
     }
+
+    hljs.highlightBlock(youtubeReponse); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });

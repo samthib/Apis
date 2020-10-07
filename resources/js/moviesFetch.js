@@ -40,6 +40,8 @@ moviesPOST.addEventListener('submit', function(e) {
       moviesDate.innerHTML = data.results.[0].release_date;
       moviesNote.innerHTML = data.results.[0].vote_average;
     }
+
+    hljs.highlightBlock(moviesReponse);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);
