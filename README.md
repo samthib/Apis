@@ -10,6 +10,11 @@
 
 Provide several APIs gateways from various services providers:
 
+- Photos API from flickr.com
+- Videos API from youtube.com
+- Messages API from twitter.com
+- Movies API from tmdb.com
+- Business API from yelp.com
 - Wheater API from openweathermap.org
 - Map API from openstreetmap.org
 - Phone verification API from vonage.com
