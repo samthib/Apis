@@ -3,7 +3,7 @@
 
 @section('content')
 
-  <div class="container-fluid p-5">
+  <div class="container-fluid p-sm-5">
     <div class="row">
 
       @include('cards.twitter')
@@ -27,7 +27,6 @@
       @include('cards.weather')
 
       @include('cards.stocks')
-
 
       {{-- @include('cards.instagram')
 

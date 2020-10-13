@@ -1,4 +1,5 @@
-<div class="col-md-6 col-xl-4">
+<div class="col-md-6 col-xl-4" id="youtube">
+  <form action="{{ route('fetch.youtube') }}">
   <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/youtube.png') }}')">
 
     <div class="card-header">
@@ -11,7 +12,6 @@
       <h5 class="">API description</h5>
       <p class="card-text">Search a list of videos from Youtube website.</p>
 
-      <form class="" id="youtubePOST" action="{{ route('fetch.youtube') }}">
         <div class="row">
           <fieldset class="form-group col-12">
             <label for="search"><b>Search videos</b></label>
@@ -19,28 +19,27 @@
           </fieldset>
         </div>
         <button type="submit" class="btn btn-info">Submit</button>
-      </form>
 
       <div class="my-2">
-        <div id="youtubeBlock" class="flex-column justify-content-between" style="display: none;">
+        <div class="response-block flex-column justify-content-between" style="display: none;">
 
           <div id="carouselYoutubeControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="embed-responsive embed-responsive-16by9">
-                  <iframe id="youtubeFrame-1" class="embed-responsive-item rounded-top" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe class="response-frame-1 embed-responsive-item rounded-top" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="embed-responsive embed-responsive-16by9">
-                  <iframe id="youtubeFrame-2" class="embed-responsive-item rounded-bottom" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe class="response-frame-2 embed-responsive-item rounded-bottom" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
               </div>
               @for ($i=3; $i < 13; $i+=2)
                 <div class="carousel-item">
                   <div class="embed-responsive embed-responsive-16by9">
-                    <iframe id="youtubeFrame-{{$i}}" class="embed-responsive-item rounded-top" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="response-frame-{{$i}} embed-responsive-item rounded-top" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </div>
                   <div class="embed-responsive embed-responsive-16by9">
-                    <iframe id="youtubeFrame-{{$i+1}}" class="embed-responsive-item rounded-bottom" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="response-frame-{{$i+1}} embed-responsive-item rounded-bottom" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </div>
                 </div>
               @endfor
@@ -59,7 +58,7 @@
         </div>
       </div>
 
-      <pre><code id="youtubeReponse" class="json response border rounded text-left">{"API" : "Response here"}</code></pre>
+      <pre><code class="response-json json border rounded text-left">{"API" : "Response here"}</code></pre>
 
     </div>
 
@@ -68,5 +67,7 @@
         <i class="fa fa-external-link" aria-hidden="true"></i>
       </a>
     </div>
+
   </div>
+</form>
 </div>

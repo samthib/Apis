@@ -104,8 +104,8 @@ public function weather(Request $request)
 */
 public function verify(Request $request)
 {
-  $phone = $request->verifyPhone;
-  $code = $request->verifyCode;
+  $phone = $request->phone;
+  $code = $request->code;
   $request_id = $request->request_id;
 
   // set API Endpoint and API key

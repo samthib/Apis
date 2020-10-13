@@ -1,17 +1,17 @@
-const weatherPOST = document.getElementById('weatherPOST');
-var weatherBlock = document.getElementById('weatherBlock');
-var weatherReponse = document.getElementById('weatherReponse');
-var weatherRate = document.getElementById('weatherRate');
-var weatherResult = document.getElementById('weatherResult');
-var weatherIcon = document.getElementById('weatherIcon');
-const token = document.querySelector('meta[name="csrf-token"]').content;
+const weather = document.querySelector('#weather');
 
-
-weatherPOST.addEventListener('submit', function(e) {
+weather.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
+  const token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var result = this.querySelector('.response-result');
+  var icon = this.querySelector('.response-icon');
+  var rate = this.querySelector('.response-rate');
+
   const url = this.getAttribute('action');
-  postData = new FormData(weatherPOST);
+  postData = new FormData(this);
 
   fetch(url, {
     method: "POST",
@@ -26,16 +26,16 @@ weatherPOST.addEventListener('submit', function(e) {
   )
   .then(data => {
     console.log(data);
-    weatherReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      weatherBlock.style.display = "flex";
-      weatherResult.innerHTML = data.weather[0].description;
-      weatherIcon.src = "http://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png";
-      weatherRate.innerHTML = "<b>"+data.main.temp+"&#8451;</b>";
+      block.style.display = "flex";
+      result.innerHTML = data.weather[0].description;
+      icon.src = "http://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png";
+      rate.innerHTML = "<b>"+data.main.temp+"&#8451;</b>";
     }
 
-    hljs.highlightBlock(weatherReponse);// Reload the syntax in the block of code
+    hljs.highlightBlock(json);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

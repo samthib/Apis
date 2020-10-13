@@ -1,4 +1,4 @@
-<div class="col-md-6 col-xl-4">
+{{-- <div class="col-md-6 col-xl-4">
   <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/Facebook-Wallpaper-5.jpg') }}')">
 
     <div class="card-header">
@@ -46,4 +46,4 @@
       </a>
     </div>
   </div>
-</div>
+</div> --}}

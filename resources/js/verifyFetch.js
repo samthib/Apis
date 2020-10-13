@@ -1,18 +1,17 @@
-const verifyPOST = document.getElementById('verifyPOST');
-var verifyBlock = document.getElementById('verifyBlock');
-var verifyReponse = document.getElementById('verifyReponse');
-var verifyResult = document.getElementById('verifyResult');
-var verifyPhone = document.getElementById('verifyPhone');
-var verifyCode = document.getElementById('verifyCode');
-var verify_request_id = document.getElementById('request_id');
-const token = document.querySelector('meta[name="csrf-token"]').content;
+const verify = document.querySelector('#verify');
 
-
-verifyPOST.addEventListener('submit', function(e) {
+verify.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
+  const token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var result = this.querySelector('.response-result');
+  var code = this.querySelector('#code');
+  var request_id = this.querySelector('#request_id');
+
   const url = this.getAttribute('action');
-  postData = new FormData(verifyPOST);
+  postData = new FormData(this);
 
   fetch(url, {
     method: "POST",
@@ -27,24 +26,24 @@ verifyPOST.addEventListener('submit', function(e) {
   )
   .then(data => {
     console.log(data);
-    verifyReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status == 0) {
       if (typeof data.event_id !== 'undefined') {
-        verifyResult.innerHTML = "<span class='text-success'>Verified &#10004;</span>"
+        result.innerHTML = "<span class='text-success'>Verified &#10004;</span>"
       } else {
-        verifyCode.readOnly = false;
-        verifyCode.focus();
-        verify_request_id.value = data.request_id;
+        code.readOnly = false;
+        code.focus();
+        request_id.value = data.request_id;
 
-        verifyBlock.style.display = "flex";
-        verifyResult.innerHTML = "<span class='text-warning'>Enter your code &#10034;&#10034;&#10034;&#10034;</span>"
+        block.style.display = "flex";
+        result.innerHTML = "<span class='text-warning'>Enter your code &#10034;&#10034;&#10034;&#10034;</span>"
       }
     } else {
-      verifyResult.innerHTML = "<span class='text-danger'>Error &#10008;</span>"
+      result.innerHTML = "<span class='text-danger'>Error &#10008;</span>"
     }
 
-    hljs.highlightBlock(verifyReponse);// Reload the syntax in the block of code
+    hljs.highlightBlock(json);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

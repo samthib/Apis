@@ -1,20 +1,19 @@
-const moviesPOST = document.getElementById('moviesPOST');
-var moviesBlock = document.getElementById('moviesBlock');
-var moviesReponse = document.getElementById('moviesReponse');
-var moviesTitle = document.getElementById('moviesTitle');
-var moviesPoster = document.getElementById('moviesPoster');
-var moviesAbstract = document.getElementById('moviesAbstract');
-var moviesDate = document.getElementById('moviesDate');
-var moviesNote = document.getElementById('moviesNote');
+const movie = document.querySelector('#movie');
 
-const token = document.querySelector('meta[name="csrf-token"]').content;
-
-
-moviesPOST.addEventListener('submit', function(e) {
+movie.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
+  const token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var title = this.querySelector('.response-title');
+  var image = this.querySelector('.response-image');
+  var description = this.querySelector('.response-description');
+  var date = this.querySelector('.response-date');
+  var rate = this.querySelector('.response-rate');
+
   const url = this.getAttribute('action');
-  postData = new FormData(moviesPOST);
+  postData = new FormData(this);
 
   fetch(url, {
     method: "POST",
@@ -30,18 +29,18 @@ moviesPOST.addEventListener('submit', function(e) {
   .then(data => {
     console.log(data);
 
-    moviesReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      moviesBlock.style.display = "flex";
-      moviesTitle.innerHTML = data.results.[0].title;
-      moviesPoster.src = 'https://image.tmdb.org/t/p/w500/'+data.results.[0].poster_path;
-      moviesAbstract.innerHTML = data.results.[0].overview;
-      moviesDate.innerHTML = data.results.[0].release_date;
-      moviesNote.innerHTML = data.results.[0].vote_average;
+      block.style.display = "flex";
+      title.innerHTML = data.results.[0].title;
+      image.src = 'https://image.tmdb.org/t/p/w500/'+data.results.[0].poster_path;
+      description.innerHTML = data.results.[0].overview;
+      date.innerHTML = data.results.[0].release_date;
+      rate.innerHTML = data.results.[0].vote_average;
     }
 
-    hljs.highlightBlock(moviesReponse);// Reload the syntax in the block of code
+    hljs.highlightBlock(json);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

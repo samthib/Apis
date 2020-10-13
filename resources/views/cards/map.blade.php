@@ -1,4 +1,5 @@
-<div class="col-md-6 col-xl-4">
+<div class="col-md-6 col-xl-4" id="map">
+  <form action="{{ route('fetch.map') }}">
   <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/google-maps-t.jpg') }}')">
 
     <div class="card-header">
@@ -11,7 +12,6 @@
       <h5 class="">API description</h5>
       <p class="card-text">Interactive maps based on data by OpenStreetMap contributors.</p>
 
-      <form class="" id="mapPOST" action="{{ route('fetch.map') }}">
         <div class="row">
           <fieldset class="form-group col-6">
             <label for="number"><b>Street number</b></label>
@@ -31,15 +31,14 @@
           </fieldset>
         </div>
         <button type="submit" class="btn btn-info">Submit</button>
-      </form>
 
       <div class="my-2">
-        <div id="mapBlock" class="d-none justify-content-between">
+        <div id="mapBlock" class="response-block d-none justify-content-between">
           <!-- Map will be displayed here -->
         </div>
       </div>
 
-      <pre><code id="mapReponse" class="json response border rounded text-left">{"API" : "Response here"}</code></pre>
+      <pre><code class="response-json json border rounded text-left">{"API" : "Response here"}</code></pre>
 
     </div>
     <div class="card-footer">
@@ -47,5 +46,7 @@
         <i class="fa fa-external-link" aria-hidden="true"></i>
       </a>
     </div>
+
   </div>
+</form>
 </div>

@@ -1,22 +1,22 @@
-const stocksPOST = document.getElementById('stocksPOST');
-var stocksBlock = document.getElementById('stocksBlock');
-var stocksReponse = document.getElementById('stocksReponse');
-var stocksSymbol = document.getElementById('stocksSymbol');
-var stocksRate = document.getElementById('stocksRate');
-var stocksResult = document.getElementById('stocksResult');
-var stocksDate = document.getElementById('stocksDate');
-var stocksH = document.getElementById('stocksH');
-var stocksC = document.getElementById('stocksC');
-var stocksO = document.getElementById('stocksO');
-var stocksL = document.getElementById('stocksL');
-const token = document.querySelector('meta[name="csrf-token"]').content;
+const stocks = document.querySelector('#stocks');
 
-
-stocksPOST.addEventListener('submit', function(e) {
+stocks.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
+  const token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var symbol = this.querySelector('.response-symbol');
+  var rate = this.querySelector('.response-rate');
+  var result = this.querySelector('.response-result');
+  var date = this.querySelector('.response-date');
+  var height = this.querySelector('.response-height');
+  var close = this.querySelector('.response-close');
+  var open = this.querySelector('.response-open');
+  var low = this.querySelector('.response-low');
+
   const url = this.getAttribute('action');
-  postData = new FormData(stocksPOST);
+  postData = new FormData(this);
 
   fetch(url, {
     method: "POST",
@@ -31,25 +31,25 @@ stocksPOST.addEventListener('submit', function(e) {
   )
   .then(data => {
     console.log(data);
-    stocksReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      stocksBlock.style.display = "flex";
-      stocksSymbol.innerHTML = data.symbol;
-      stocksRate.innerHTML = data.c;
+      block.style.display = "flex";
+      symbol.innerHTML = data.symbol;
+      rate.innerHTML = data.c;
       if (data.change >= 0) {
-        stocksResult.innerHTML = "<span class='text-success'><b>&and;</b> "+data.percentchange+"% "+"<small>("+data.change+")</small></span>";
+        result.innerHTML = "<span class='text-success'><b>&and;</b> "+data.percentchange+"% "+"<small>("+data.change+")</small></span>";
       } else {
-        stocksResult.innerHTML = "<span class='text-danger'><b>&or;</b> "+data.percentchange+"% "+"<small>("+data.change+")</small></span>";
+        result.innerHTML = "<span class='text-danger'><b>&or;</b> "+data.percentchange+"% "+"<small>("+data.change+")</small></span>";
       }
-      stocksDate.innerHTML = new Date(data.t * 1000).toDateString();// * 1000 to set in milliseconds.
-      stocksH.innerHTML = data.h;
-      stocksC.innerHTML = data.c;
-      stocksO.innerHTML = data.o;
-      stocksL.innerHTML = data.l;
+      date.innerHTML = new Date(data.t * 1000).toDateString();// * 1000 to set in milliseconds.
+      height.innerHTML = data.h;
+      close.innerHTML = data.c;
+      open.innerHTML = data.o;
+      low.innerHTML = data.l;
     }
 
-    hljs.highlightBlock(stocksReponse);// Reload the syntax in the block of code
+    hljs.highlightBlock(json);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

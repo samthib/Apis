@@ -1,5 +1,7 @@
-<div class="col-md-6 col-xl-4">
+<div class="col-md-6 col-xl-4" id="currencies">
+  <form action="{{ route('fetch.currencies') }}">
   <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/shutterstock_1368556547_small.jpg') }}');">
+
     <div class="card-header">
       <h5 class="card-title">Currency Converter API</h5>
       <a href="https://fixer.io/" target="_blank">
@@ -10,7 +12,6 @@
       <h5 class="">API description</h5>
       <p class="card-text">Provides exchange rates based on the official banks datas.</p>
 
-      <form class="" id="currenciesPOST" action="{{ route('fetch.currencies') }}">
         <div class="row">
           <fieldset class="form-group col-6">
             <label for="quantity"><b>Amount &euro;</b></label>
@@ -26,17 +27,16 @@
           </fieldset>
         </div>
         <button type="submit" class="btn btn-info">Submit</button>
-      </form>
 
       <div class="my-2">
-        <div id="currenciesBlock" class="response-block" style="display: none;">
-          <h4 id="currenciesResult"></h4>
-          <h6 id="currenciesRate"></h6>
-          <h6 id="currenciesRateInverse"></h6>
+        <div class="response-block" style="display: none;">
+          <h4 class="response-result text-info"></h4>
+          <h6 class="response-rate text-warning"></h6>
+          <h6 class="response-rate-inverse"></h6>
         </div>
       </div>
 
-      <pre><code id="currenciesReponse" class="json response border rounded text-left">{"API" : "Response here"}</code></pre>
+      <pre><code class="response-json json border rounded text-left">{"API" : "Response here"}</code></pre>
 
     </div>
     <div class="card-footer">
@@ -44,5 +44,7 @@
         <i class="fa fa-external-link" aria-hidden="true"></i>
       </a>
     </div>
+
   </div>
+</form>
 </div>

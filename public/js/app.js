@@ -49821,26 +49821,26 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var businessPOST = document.getElementById('businessPOST');
-var businessBlock = document.getElementById('businessBlock');
-var businessReponse = document.getElementById('businessReponse');
-var businessImage = [];
-var businessTitle = [];
-var businessAdress = [];
-var businessNote = [];
-
-for (var i = 1; i < 13; i++) {
-  businessImage[i] = document.getElementById('businessImage-' + i);
-  businessTitle[i] = document.getElementById('businessTitle-' + i);
-  businessAdress[i] = document.getElementById('businessAdress-' + i);
-  businessNote[i] = document.getElementById('businessNote-' + i);
-}
-
-var token = document.querySelector('meta[name="csrf-token"]').content;
-businessPOST.addEventListener('submit', function (e) {
+var business = document.querySelector('#business');
+business.querySelector('form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var title = [];
+  var image = [];
+  var description = [];
+  var rate = [];
+
+  for (var i = 1; i < 13; i++) {
+    title[i] = this.querySelector('.response-title-' + i);
+    image[i] = this.querySelector('.response-image-' + i);
+    description[i] = this.querySelector('.response-description-' + i);
+    rate[i] = this.querySelector('.response-rate-' + i);
+  }
+
   var url = this.getAttribute('action');
-  postData = new FormData(businessPOST);
+  postData = new FormData(this);
   fetch(url, {
     method: "POST",
     headers: {
@@ -49852,19 +49852,19 @@ businessPOST.addEventListener('submit', function (e) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    businessReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      businessBlock.style.display = "flex";
+      block.style.display = "flex";
       data.businesses.forEach(function (item, i) {
-        businessImage[i + 1].src = typeof item.id !== 'undefined' ? item.image_url : '';
-        businessTitle[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.name : '';
-        businessAdress[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.location.display_address[0] + '<br>' + item.location.display_address[1] + '<br>' + item.location.display_address[2] + '<br>' : '';
-        businessNote[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.rating : '';
+        image[i + 1].src = typeof item.id !== 'undefined' ? item.image_url : '';
+        title[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.name : '';
+        description[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.location.display_address[0] + '<br>' + item.location.display_address[1] + '<br>' + item.location.display_address[2] + '<br>' : '';
+        rate[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.rating : '';
       });
     }
 
-    hljs.highlightBlock(businessReponse); // Reload the syntax in the block of code
+    hljs.highlightBlock(json); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -49948,17 +49948,17 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var currenciesPOST = document.getElementById('currenciesPOST');
-var currenciesBlock = document.getElementById('currenciesBlock');
-var currenciesReponse = document.getElementById('currenciesReponse');
-var currenciesRate = document.getElementById('currenciesRate');
-var currenciesRateInverse = document.getElementById('currenciesRateInverse');
-var currenciesResult = document.getElementById('currenciesResult');
-var token = document.querySelector('meta[name="csrf-token"]').content;
-currenciesPOST.addEventListener('submit', function (e) {
+var currencies = document.querySelector('#currencies');
+currencies.querySelector('form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var result = this.querySelector('.response-result');
+  var rate = this.querySelector('.response-rate');
+  var rateInverse = this.querySelector('.response-rate-inverse');
   var url = this.getAttribute('action');
-  postData = new FormData(currenciesPOST);
+  postData = new FormData(this);
   fetch(url, {
     method: "POST",
     headers: {
@@ -49970,17 +49970,17 @@ currenciesPOST.addEventListener('submit', function (e) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    currenciesReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      currenciesBlock.style.display = "block";
-      var keys = Object.keys(data.rates);
-      currenciesResult.innerHTML = data.quantity + " " + data.base + " = <b>" + data.change + "</b> " + keys[0];
-      currenciesRate.innerHTML = "1" + " " + data.base + "  &rlhar; " + data.rates[keys[0]].toPrecision(5) + " " + keys[0];
-      currenciesRateInverse.innerHTML = "1" + " " + keys[0] + " &lrhar; " + (1 / data.rates[keys[0]]).toPrecision(5) + " " + data.base;
+      block.style.display = "block";
+      var currency = Object.keys(data.rates)[0];
+      result.innerHTML = data.quantity + " " + data.base + " = <b>" + data.change + "</b> " + currency;
+      rate.innerHTML = "1" + " " + data.base + "  &rlhar; " + data.rates[currency].toPrecision(5) + " " + currency;
+      rateInverse.innerHTML = "1" + " " + currency + " &lrhar; " + (1 / data.rates[currency]).toPrecision(5) + " " + data.base;
     }
 
-    hljs.highlightBlock(currenciesReponse); // Reload the syntax in the block of code
+    hljs.highlightBlock(json); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50019,14 +50019,14 @@ window.addEventListener("load", function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var mapPOST = document.getElementById('mapPOST');
-var mapBlock = document.getElementById('mapBlock');
-var mapReponse = document.getElementById('mapReponse');
-var token = document.querySelector('meta[name="csrf-token"]').content;
-mapPOST.addEventListener('submit', function (e) {
+var map = document.querySelector('#map');
+map.querySelector('form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
   var url = this.getAttribute('action');
-  postData = new FormData(mapPOST);
+  postData = new FormData(this);
   fetch(url, {
     method: "POST",
     headers: {
@@ -50038,19 +50038,19 @@ mapPOST.addEventListener('submit', function (e) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    mapReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      mapBlock.className = "d-flex";
-      mapBlock.className = "response-block";
-      mapBlock.style.height = "300px";
+      block.className = "d-flex";
+      block.className = "response-block";
+      block.style.height = "300px";
       initMap(data[0].lat, data[0].lon);
     } else {
-      mapBlock.className = "d-none";
-      mapBlock.style.height = "0px";
+      block.className = "d-none";
+      block.style.height = "0px";
     }
 
-    hljs.highlightBlock(mapReponse); // Reload the syntax in the block of code
+    hljs.highlightBlock(json); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50085,19 +50085,19 @@ function initMap(lat, lon) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var moviesPOST = document.getElementById('moviesPOST');
-var moviesBlock = document.getElementById('moviesBlock');
-var moviesReponse = document.getElementById('moviesReponse');
-var moviesTitle = document.getElementById('moviesTitle');
-var moviesPoster = document.getElementById('moviesPoster');
-var moviesAbstract = document.getElementById('moviesAbstract');
-var moviesDate = document.getElementById('moviesDate');
-var moviesNote = document.getElementById('moviesNote');
-var token = document.querySelector('meta[name="csrf-token"]').content;
-moviesPOST.addEventListener('submit', function (e) {
+var movie = document.querySelector('#movie');
+movie.querySelector('form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var title = this.querySelector('.response-title');
+  var image = this.querySelector('.response-image');
+  var description = this.querySelector('.response-description');
+  var date = this.querySelector('.response-date');
+  var rate = this.querySelector('.response-rate');
   var url = this.getAttribute('action');
-  postData = new FormData(moviesPOST);
+  postData = new FormData(this);
   fetch(url, {
     method: "POST",
     headers: {
@@ -50109,18 +50109,18 @@ moviesPOST.addEventListener('submit', function (e) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    moviesReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      moviesBlock.style.display = "flex";
-      moviesTitle.innerHTML = data.results[0].title;
-      moviesPoster.src = 'https://image.tmdb.org/t/p/w500/' + data.results[0].poster_path;
-      moviesAbstract.innerHTML = data.results[0].overview;
-      moviesDate.innerHTML = data.results[0].release_date;
-      moviesNote.innerHTML = data.results[0].vote_average;
+      block.style.display = "flex";
+      title.innerHTML = data.results[0].title;
+      image.src = 'https://image.tmdb.org/t/p/w500/' + data.results[0].poster_path;
+      description.innerHTML = data.results[0].overview;
+      date.innerHTML = data.results[0].release_date;
+      rate.innerHTML = data.results[0].vote_average;
     }
 
-    hljs.highlightBlock(moviesReponse); // Reload the syntax in the block of code
+    hljs.highlightBlock(json); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50135,22 +50135,22 @@ moviesPOST.addEventListener('submit', function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var photosPOST = document.getElementById('photosPOST');
-var photosBlock = document.getElementById('photosBlock');
-var photosReponse = document.getElementById('photosReponse');
-var photosImage = [];
-var photosTitle = [];
-
-for (var i = 1; i < 13; i++) {
-  photosImage[i] = document.getElementById('photosImage-' + i);
-  photosTitle[i] = document.getElementById('photosTitle-' + i);
-}
-
-var token = document.querySelector('meta[name="csrf-token"]').content;
-photosPOST.addEventListener('submit', function (e) {
+var photos = document.querySelector('#photos');
+photos.querySelector('form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var title = [];
+  var image = [];
+
+  for (var i = 1; i < 13; i++) {
+    title[i] = this.querySelector('.response-title-' + i);
+    image[i] = this.querySelector('.response-image-' + i);
+  }
+
   var url = this.getAttribute('action');
-  postData = new FormData(photosPOST);
+  postData = new FormData(this);
   fetch(url, {
     method: "POST",
     headers: {
@@ -50162,17 +50162,17 @@ photosPOST.addEventListener('submit', function (e) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    photosReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      photosBlock.style.display = "flex";
+      block.style.display = "flex";
       data.photos.photo.forEach(function (item, i) {
-        photosImage[i + 1].src = typeof item.id !== 'undefined' ? 'https://farm' + item.farm + '.staticflickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_n.jpg' : '';
-        photosTitle[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.title : '';
+        image[i + 1].src = typeof item.id !== 'undefined' ? 'https://farm' + item.farm + '.staticflickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_n.jpg' : '';
+        title[i + 1].innerHTML = typeof item.id !== 'undefined' ? item.title : '';
       });
     }
 
-    hljs.highlightBlock(photosReponse); // Reload the syntax in the block of code
+    hljs.highlightBlock(json); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50187,25 +50187,25 @@ photosPOST.addEventListener('submit', function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var searchPOST = document.getElementById('searchPOST');
-var searchBlock = document.getElementById('searchBlock');
-var searchReponse = document.getElementById('searchReponse');
-var searchTitle = document.getElementById('searchTitle');
-var searchAbstract = document.getElementById('searchAbstract');
-var searchAbstractUrl = document.getElementById('searchAbstractUrl');
-var searchIcon = document.getElementById('searchIcon');
-var searchUrl = document.getElementById('searchUrl');
-var searchLinkIcon1 = document.getElementById('searchLinkIcon-1');
-var searchLinkIcon2 = document.getElementById('searchLinkIcon-2');
-var searchLinkIcon3 = document.getElementById('searchLinkIcon-3');
-var searchLinkIcon4 = document.getElementById('searchLinkIcon-4');
-var searchLinkIcon5 = document.getElementById('searchLinkIcon-5');
-var searchLinkIcon6 = document.getElementById('searchLinkIcon-6');
-var token = document.querySelector('meta[name="csrf-token"]').content;
-searchPOST.addEventListener('submit', function (e) {
+var search = document.querySelector('#search');
+search.querySelector('form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var title = this.querySelector('.response-title');
+  var description = this.querySelector('.response-description');
+  var descriptionLink = this.querySelector('.response-description-link');
+  var icon = this.querySelector('.response-icon');
+  var link = this.querySelector('.response-link');
+  var linkIcon = [];
+
+  for (var i = 1; i < 7; i++) {
+    linkIcon[i] = this.querySelector('.response-link-icon-' + i);
+  }
+
   var url = this.getAttribute('action');
-  postData = new FormData(searchPOST);
+  postData = new FormData(this);
   fetch(url, {
     method: "POST",
     headers: {
@@ -50217,75 +50217,64 @@ searchPOST.addEventListener('submit', function (e) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    searchReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      searchBlock.style.display = "flex";
-      searchTitle.innerHTML = data.Heading;
-      searchIcon.src = data.Image;
-      searchUrl.innerHTML = typeof data.Results[0] !== 'undefined' ? data.Results[0].Text : '';
-      searchUrl.href = typeof data.Results[0] !== 'undefined' ? data.Results[0].FirstURL : '';
-      searchAbstract.innerHTML = data.AbstractText;
-      searchAbstractUrl.href = data.AbstractURL;
-      searchAbstractUrl.innerHTML = data.AbstractSource;
-      searchLinkIcon1.href = "";
-      searchLinkIcon1.children[0].src = "";
-      searchLinkIcon1.children[0].children[0] = "";
-      searchLinkIcon2.href = "";
-      searchLinkIcon2.children[0].src = "";
-      searchLinkIcon2.children[0].children[0] = "";
-      searchLinkIcon3.href = "";
-      searchLinkIcon3.children[0].src = "";
-      searchLinkIcon3.children[0].children[0] = "";
-      searchLinkIcon4.href = "";
-      searchLinkIcon4.children[0].src = "";
-      searchLinkIcon4.children[0].children[0] = "";
-      searchLinkIcon5.href = "";
-      searchLinkIcon5.children[0].src = "";
-      searchLinkIcon5.children[0].children[0] = "";
-      searchLinkIcon6.href = "";
-      searchLinkIcon6.children[0].src = "";
-      searchLinkIcon6.children[0].children[0] = "";
+      block.style.display = "flex";
+      title.innerHTML = data.Heading;
+      icon.src = data.Image;
+      link.innerHTML = typeof data.Results[0] !== 'undefined' ? data.Results[0].Text : '';
+      link.href = typeof data.Results[0] !== 'undefined' ? data.Results[0].FirstURL : '';
+      description.innerHTML = data.AbstractText;
+      descriptionLink.href = data.AbstractURL;
+      descriptionLink.innerHTML = data.AbstractSource;
+
+      for (var i = 1; i < 7; i++) {
+        linkIcon[i].href = "";
+        linkIcon[i].children[0].src = "";
+        linkIcon[i].children[0].children[0] = "";
+      }
+
       data.Infobox.content.forEach(function (item, i) {
         if (item.data_type == 'wikipedia_profile') {
-          searchLinkIcon1.href = "https://wikipedia.com/" + item.value;
-          searchLinkIcon1.children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/wikipedia.svg';
-          searchLinkIcon1.children[0].children[0] = 'Wikipedia';
+          linkIcon[1].href = "https://wikipedia.com/" + item.value;
+          linkIcon[1].children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/wikipedia.svg';
+          linkIcon[1].children[0].children[0] = 'Wikipedia';
         }
 
         if (item.data_type == 'github_profile') {
-          searchLinkIcon2.href = "https://github.com/" + item.value;
-          searchLinkIcon2.children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/github.svg';
-          searchLinkIcon2.children[0].children[0] = 'GitHub';
+          linkIcon[2].href = "https://github.com/" + item.value;
+          linkIcon[2].children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/github.svg';
+          linkIcon[2].children[0].children[0] = 'GitHub';
         }
 
         if (item.data_type == 'twitter_profile') {
-          searchLinkIcon3.href = "https://twitter.com/" + item.value;
-          searchLinkIcon3.children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/twitter.svg';
-          searchLinkIcon3.children[0].children[0] = 'twitter';
+          linkIcon[3].href = "https://twitter.com/" + item.value;
+          linkIcon[3].children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/twitter.svg';
+          linkIcon[3].children[0].children[0] = 'twitter';
         }
 
         if (item.data_type == 'instagram_profile') {
-          searchLinkIcon4.href = "https://instagram.com/" + item.value;
-          searchLinkIcon4.children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/instagram.svg';
-          searchLinkIcon4.children[0].children[0] = 'Instagram';
+          linkIcon[4].href = "https://instagram.com/" + item.value;
+          linkIcon[4].children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/instagram.svg';
+          linkIcon[4].children[0].children[0] = 'Instagram';
         }
 
         if (item.data_type == 'facebook_profile') {
-          searchLinkIcon5.href = "https://facebook.com/" + item.value;
-          searchLinkIcon5.children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/facebook.svg';
-          searchLinkIcon5.children[0].children[0] = 'Facebook';
+          linkIcon[5].href = "https://facebook.com/" + item.value;
+          linkIcon[5].children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/facebook.svg';
+          linkIcon[5].children[0].children[0] = 'Facebook';
         }
 
         if (item.data_type == 'youtube_channel') {
-          searchLinkIcon6.href = "https://youtube.com/" + item.value;
-          searchLinkIcon6.children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/youtube.svg';
-          searchLinkIcon6.children[0].children[0] = 'Youtube';
+          linkIcon[6].href = "https://youtube.com/" + item.value;
+          linkIcon[6].children[0].src = 'https://duckduckgo.com/assets/icons/thirdparty/youtube.svg';
+          linkIcon[6].children[0].children[0] = 'Youtube';
         }
       });
     }
 
-    hljs.highlightBlock(searchReponse); // Reload the syntax in the block of code
+    hljs.highlightBlock(json); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50300,22 +50289,22 @@ searchPOST.addEventListener('submit', function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var stocksPOST = document.getElementById('stocksPOST');
-var stocksBlock = document.getElementById('stocksBlock');
-var stocksReponse = document.getElementById('stocksReponse');
-var stocksSymbol = document.getElementById('stocksSymbol');
-var stocksRate = document.getElementById('stocksRate');
-var stocksResult = document.getElementById('stocksResult');
-var stocksDate = document.getElementById('stocksDate');
-var stocksH = document.getElementById('stocksH');
-var stocksC = document.getElementById('stocksC');
-var stocksO = document.getElementById('stocksO');
-var stocksL = document.getElementById('stocksL');
-var token = document.querySelector('meta[name="csrf-token"]').content;
-stocksPOST.addEventListener('submit', function (e) {
+var stocks = document.querySelector('#stocks');
+stocks.querySelector('form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var symbol = this.querySelector('.response-symbol');
+  var rate = this.querySelector('.response-rate');
+  var result = this.querySelector('.response-result');
+  var date = this.querySelector('.response-date');
+  var height = this.querySelector('.response-height');
+  var close = this.querySelector('.response-close');
+  var open = this.querySelector('.response-open');
+  var low = this.querySelector('.response-low');
   var url = this.getAttribute('action');
-  postData = new FormData(stocksPOST);
+  postData = new FormData(this);
   fetch(url, {
     method: "POST",
     headers: {
@@ -50327,28 +50316,28 @@ stocksPOST.addEventListener('submit', function (e) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    stocksReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      stocksBlock.style.display = "flex";
-      stocksSymbol.innerHTML = data.symbol;
-      stocksRate.innerHTML = data.c;
+      block.style.display = "flex";
+      symbol.innerHTML = data.symbol;
+      rate.innerHTML = data.c;
 
       if (data.change >= 0) {
-        stocksResult.innerHTML = "<span class='text-success'><b>&and;</b> " + data.percentchange + "% " + "<small>(" + data.change + ")</small></span>";
+        result.innerHTML = "<span class='text-success'><b>&and;</b> " + data.percentchange + "% " + "<small>(" + data.change + ")</small></span>";
       } else {
-        stocksResult.innerHTML = "<span class='text-danger'><b>&or;</b> " + data.percentchange + "% " + "<small>(" + data.change + ")</small></span>";
+        result.innerHTML = "<span class='text-danger'><b>&or;</b> " + data.percentchange + "% " + "<small>(" + data.change + ")</small></span>";
       }
 
-      stocksDate.innerHTML = new Date(data.t * 1000).toDateString(); // * 1000 to set in milliseconds.
+      date.innerHTML = new Date(data.t * 1000).toDateString(); // * 1000 to set in milliseconds.
 
-      stocksH.innerHTML = data.h;
-      stocksC.innerHTML = data.c;
-      stocksO.innerHTML = data.o;
-      stocksL.innerHTML = data.l;
+      height.innerHTML = data.h;
+      close.innerHTML = data.c;
+      open.innerHTML = data.o;
+      low.innerHTML = data.l;
     }
 
-    hljs.highlightBlock(stocksReponse); // Reload the syntax in the block of code
+    hljs.highlightBlock(json); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50363,23 +50352,23 @@ stocksPOST.addEventListener('submit', function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var twitterPOST = document.getElementById('twitterPOST');
-var twitterBlock = document.getElementById('twitterBlock');
-var twitterReponse = document.getElementById('twitterReponse');
-var twitterTitle = document.getElementById('twitterTitle');
-var twitterUsername = document.getElementById('twitterUsername');
-var twitterVerified = document.getElementById('twitterVerified');
-var twitterDescription = document.getElementById('twitterDescription');
-var twitterResult = document.getElementById('twitterResult');
-var twitterIcon = document.getElementById('twitterIcon');
-var twitterUrl = document.getElementById('twitterUrl');
-var twitterFollowers = document.getElementById('twitterFollowers');
-var twitterFollowing = document.getElementById('twitterFollowing');
-var token = document.querySelector('meta[name="csrf-token"]').content;
-twitterPOST.addEventListener('submit', function (e) {
+var twitter = document.querySelector('#twitter');
+twitter.querySelector('form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var title = this.querySelector('.response-title');
+  var username = this.querySelector('.response-username');
+  var verified = this.querySelector('.response-verified');
+  var description = this.querySelector('.response-description');
+  var result = this.querySelector('.response-result');
+  var icon = this.querySelector('.response-icon');
+  var link = this.querySelector('.response-link');
+  var followers = this.querySelector('.response-followers');
+  var following = this.querySelector('.response-following');
   var url = this.getAttribute('action');
-  postData = new FormData(twitterPOST);
+  postData = new FormData(this);
   fetch(url, {
     method: "POST",
     headers: {
@@ -50391,23 +50380,23 @@ twitterPOST.addEventListener('submit', function (e) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    twitterReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      twitterBlock.style.display = "flex";
-      twitterResult.innerHTML = typeof data.includes !== 'undefined' ? data.includes.tweets[0].text : '';
-      twitterDescription.innerHTML = data.data.description;
-      twitterTitle.innerHTML = data.data.name;
-      twitterUsername.innerHTML = '@' + data.data.username;
-      twitterIcon.src = data.data.profile_image_url;
-      twitterVerified.style.display = data.data.verified ? "inline-block" : "none";
-      twitterUrl.innerHTML = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].display_url : '';
-      twitterUrl.href = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].expanded_url : '';
-      twitterFollowers.innerHTML = data.data.public_metrics.followers_count;
-      twitterFollowing.innerHTML = data.data.public_metrics.following_count;
+      block.style.display = "flex";
+      result.innerHTML = typeof data.includes !== 'undefined' ? data.includes.tweets[0].text : '';
+      description.innerHTML = data.data.description;
+      title.innerHTML = data.data.name;
+      username.innerHTML = '@' + data.data.username;
+      icon.src = data.data.profile_image_url;
+      verified.style.display = data.data.verified ? "inline-block" : "none";
+      link.innerHTML = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].display_url : '';
+      link.href = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].expanded_url : '';
+      followers.innerHTML = data.data.public_metrics.followers_count;
+      following.innerHTML = data.data.public_metrics.following_count;
     }
 
-    hljs.highlightBlock(twitterReponse); // Reload the syntax in the block of code
+    hljs.highlightBlock(json); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50422,18 +50411,17 @@ twitterPOST.addEventListener('submit', function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var verifyPOST = document.getElementById('verifyPOST');
-var verifyBlock = document.getElementById('verifyBlock');
-var verifyReponse = document.getElementById('verifyReponse');
-var verifyResult = document.getElementById('verifyResult');
-var verifyPhone = document.getElementById('verifyPhone');
-var verifyCode = document.getElementById('verifyCode');
-var verify_request_id = document.getElementById('request_id');
-var token = document.querySelector('meta[name="csrf-token"]').content;
-verifyPOST.addEventListener('submit', function (e) {
+var verify = document.querySelector('#verify');
+verify.querySelector('form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var result = this.querySelector('.response-result');
+  var code = this.querySelector('#code');
+  var request_id = this.querySelector('#request_id');
   var url = this.getAttribute('action');
-  postData = new FormData(verifyPOST);
+  postData = new FormData(this);
   fetch(url, {
     method: "POST",
     headers: {
@@ -50445,23 +50433,23 @@ verifyPOST.addEventListener('submit', function (e) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    verifyReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status == 0) {
       if (typeof data.event_id !== 'undefined') {
-        verifyResult.innerHTML = "<span class='text-success'>Verified &#10004;</span>";
+        result.innerHTML = "<span class='text-success'>Verified &#10004;</span>";
       } else {
-        verifyCode.readOnly = false;
-        verifyCode.focus();
-        verify_request_id.value = data.request_id;
-        verifyBlock.style.display = "flex";
-        verifyResult.innerHTML = "<span class='text-warning'>Enter your code &#10034;&#10034;&#10034;&#10034;</span>";
+        code.readOnly = false;
+        code.focus();
+        request_id.value = data.request_id;
+        block.style.display = "flex";
+        result.innerHTML = "<span class='text-warning'>Enter your code &#10034;&#10034;&#10034;&#10034;</span>";
       }
     } else {
-      verifyResult.innerHTML = "<span class='text-danger'>Error &#10008;</span>";
+      result.innerHTML = "<span class='text-danger'>Error &#10008;</span>";
     }
 
-    hljs.highlightBlock(verifyReponse); // Reload the syntax in the block of code
+    hljs.highlightBlock(json); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50476,17 +50464,17 @@ verifyPOST.addEventListener('submit', function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var weatherPOST = document.getElementById('weatherPOST');
-var weatherBlock = document.getElementById('weatherBlock');
-var weatherReponse = document.getElementById('weatherReponse');
-var weatherRate = document.getElementById('weatherRate');
-var weatherResult = document.getElementById('weatherResult');
-var weatherIcon = document.getElementById('weatherIcon');
-var token = document.querySelector('meta[name="csrf-token"]').content;
-weatherPOST.addEventListener('submit', function (e) {
+var weather = document.querySelector('#weather');
+weather.querySelector('form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var result = this.querySelector('.response-result');
+  var icon = this.querySelector('.response-icon');
+  var rate = this.querySelector('.response-rate');
   var url = this.getAttribute('action');
-  postData = new FormData(weatherPOST);
+  postData = new FormData(this);
   fetch(url, {
     method: "POST",
     headers: {
@@ -50498,16 +50486,16 @@ weatherPOST.addEventListener('submit', function (e) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    weatherReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      weatherBlock.style.display = "flex";
-      weatherResult.innerHTML = data.weather[0].description;
-      weatherIcon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
-      weatherRate.innerHTML = "<b>" + data.main.temp + "&#8451;</b>";
+      block.style.display = "flex";
+      result.innerHTML = data.weather[0].description;
+      icon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+      rate.innerHTML = "<b>" + data.main.temp + "&#8451;</b>";
     }
 
-    hljs.highlightBlock(weatherReponse); // Reload the syntax in the block of code
+    hljs.highlightBlock(json); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });
@@ -50522,20 +50510,20 @@ weatherPOST.addEventListener('submit', function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var youtubePOST = document.getElementById('youtubePOST');
-var youtubeBlock = document.getElementById('youtubeBlock');
-var youtubeReponse = document.getElementById('youtubeReponse');
-var youtubeFrame = [];
-
-for (var i = 1; i < 13; i++) {
-  youtubeFrame[i] = document.getElementById('youtubeFrame-' + i);
-}
-
-var token = document.querySelector('meta[name="csrf-token"]').content;
-youtubePOST.addEventListener('submit', function (e) {
+var youtube = document.querySelector('#youtube');
+youtube.querySelector('form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var frame = [];
+
+  for (var i = 1; i < 13; i++) {
+    frame[i] = this.querySelector('.response-frame-' + i);
+  }
+
   var url = this.getAttribute('action');
-  postData = new FormData(youtubePOST);
+  postData = new FormData(this);
   fetch(url, {
     method: "POST",
     headers: {
@@ -50547,16 +50535,16 @@ youtubePOST.addEventListener('submit', function (e) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    youtubeReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      youtubeBlock.style.display = "flex";
+      block.style.display = "flex";
       data.items.forEach(function (item, i) {
-        youtubeFrame[i + 1].src = typeof item.id.videoId !== 'undefined' ? 'https://www.youtube.com/embed/' + item.id.videoId : '';
+        frame[i + 1].src = typeof item.id.videoId !== 'undefined' ? 'https://www.youtube.com/embed/' + item.id.videoId : '';
       });
     }
 
-    hljs.highlightBlock(youtubeReponse); // Reload the syntax in the block of code
+    hljs.highlightBlock(json); // Reload the syntax in the block of code
   })["catch"](function (err) {
     console.log(err);
   });

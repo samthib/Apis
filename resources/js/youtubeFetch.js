@@ -1,18 +1,18 @@
-const youtubePOST = document.getElementById('youtubePOST');
-var youtubeBlock = document.getElementById('youtubeBlock');
-var youtubeReponse = document.getElementById('youtubeReponse');
-var youtubeFrame = [];
-for (var i = 1; i < 13; i++) {
-  youtubeFrame[i] = document.getElementById('youtubeFrame-'+i);
-}
-const token = document.querySelector('meta[name="csrf-token"]').content;
+const youtube = document.querySelector('#youtube');
 
-
-youtubePOST.addEventListener('submit', function(e) {
+youtube.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
+  const token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var frame = [];
+  for (var i = 1; i < 13; i++) {
+    frame[i] = this.querySelector('.response-frame-'+i);
+  }
+
   const url = this.getAttribute('action');
-  postData = new FormData(youtubePOST);
+  postData = new FormData(this);
 
   fetch(url, {
     method: "POST",
@@ -28,17 +28,17 @@ youtubePOST.addEventListener('submit', function(e) {
   .then(data => {
     console.log(data);
 
-    youtubeReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      youtubeBlock.style.display = "flex";
+      block.style.display = "flex";
 
       data.items.forEach((item, i) => {
-        youtubeFrame[(i+1)].src = typeof item.id.videoId !== 'undefined' ? 'https://www.youtube.com/embed/'+item.id.videoId : '';
+        frame[i+1].src = typeof item.id.videoId !== 'undefined' ? 'https://www.youtube.com/embed/'+item.id.videoId : '';
       });
     }
 
-    hljs.highlightBlock(youtubeReponse);// Reload the syntax in the block of code
+    hljs.highlightBlock(json);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

@@ -34,12 +34,12 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-  @include('navbar')
+  @include('layouts.navbar')
 
   <main class="">
     @yield('content')
   </main>
 
-  @include('footer')
+  @include('layouts.footer')
 </body>
 </html>

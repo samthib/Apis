@@ -1,4 +1,5 @@
-<div class="col-md-6 col-xl-4">
+<div class="col-md-6 col-xl-4" id="weather">
+  <form action="{{ route('fetch.weather') }}">
   <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/ciel_soleil_peu_nuageux.jpg') }}')">
 
     <div class="card-header">
@@ -11,7 +12,6 @@
       <h5 class="">API description</h5>
       <p class="card-text">Get weather and weather forecasts for multiple cities.</p>
 
-      <form class="" id="weatherPOST" action="{{ route('fetch.weather') }}">
         <div class="row">
           <fieldset class="form-group col-12">
             <label for="city"><b>City</b></label>
@@ -27,17 +27,16 @@
           </fieldset>
         </div>
         <button type="submit" class="btn btn-info">Submit</button>
-      </form>
 
       <div class="my-2">
-        <div id="weatherBlock" class="justify-content-between response-block" style="display: none;">
-          <h4 id="weatherResult" class="col-md-4 align-self-center"></h4>
-          <img id="weatherIcon" class="col-md-4 align-self-center" src="" alt="">
-          <h3 id="weatherRate" class="col-md-4 align-self-center"></h3>
+        <div class="response-block row m-0 align-items-center" style="display: none;">
+          <h4 class="response-result col-md-4"></h4>
+          <img class="response-icon col-md-4" src="" alt="">
+          <h3 class="response-rate col-md-4"></h3>
         </div>
       </div>
 
-      <pre><code id="weatherReponse" class="json response border rounded text-left">{"API" : "Response here"}</code></pre>
+      <pre><code class="response-json json border rounded text-left">{"API" : "Response here"}</code></pre>
 
     </div>
     <div class="card-footer">
@@ -45,5 +44,7 @@
         <i class="fa fa-external-link" aria-hidden="true"></i>
       </a>
     </div>
+
   </div>
+</form>
 </div>

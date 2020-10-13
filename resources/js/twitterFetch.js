@@ -1,23 +1,23 @@
-const twitterPOST = document.getElementById('twitterPOST');
-var twitterBlock = document.getElementById('twitterBlock');
-var twitterReponse = document.getElementById('twitterReponse');
-var twitterTitle = document.getElementById('twitterTitle');
-var twitterUsername = document.getElementById('twitterUsername');
-var twitterVerified = document.getElementById('twitterVerified');
-var twitterDescription = document.getElementById('twitterDescription');
-var twitterResult = document.getElementById('twitterResult');
-var twitterIcon = document.getElementById('twitterIcon');
-var twitterUrl = document.getElementById('twitterUrl');
-var twitterFollowers = document.getElementById('twitterFollowers');
-var twitterFollowing = document.getElementById('twitterFollowing');
-const token = document.querySelector('meta[name="csrf-token"]').content;
+const twitter = document.querySelector('#twitter');
 
-
-twitterPOST.addEventListener('submit', function(e) {
+twitter.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
+  const token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+  var title = this.querySelector('.response-title');
+  var username = this.querySelector('.response-username');
+  var verified = this.querySelector('.response-verified');
+  var description = this.querySelector('.response-description');
+  var result = this.querySelector('.response-result');
+  var icon = this.querySelector('.response-icon');
+  var link = this.querySelector('.response-link');
+  var followers = this.querySelector('.response-followers');
+  var following = this.querySelector('.response-following');
+
   const url = this.getAttribute('action');
-  postData = new FormData(twitterPOST);
+  postData = new FormData(this);
 
   fetch(url, {
     method: "POST",
@@ -32,23 +32,23 @@ twitterPOST.addEventListener('submit', function(e) {
   )
   .then(data => {
     console.log(data);
-    twitterReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      twitterBlock.style.display = "flex";
-      twitterResult.innerHTML = typeof data.includes !== 'undefined' ? data.includes.tweets[0].text : '';
-      twitterDescription.innerHTML = data.data.description;
-      twitterTitle.innerHTML = data.data.name;
-      twitterUsername.innerHTML = '@'+data.data.username;
-      twitterIcon.src = data.data.profile_image_url;
-      twitterVerified.style.display = data.data.verified ? "inline-block" : "none";
-      twitterUrl.innerHTML = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].display_url : '';
-      twitterUrl.href = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].expanded_url : '';
-      twitterFollowers.innerHTML = data.data.public_metrics.followers_count;
-      twitterFollowing.innerHTML = data.data.public_metrics.following_count;
+      block.style.display = "flex";
+      result.innerHTML = typeof data.includes !== 'undefined' ? data.includes.tweets[0].text : '';
+      description.innerHTML = data.data.description;
+      title.innerHTML = data.data.name;
+      username.innerHTML = '@'+data.data.username;
+      icon.src = data.data.profile_image_url;
+      verified.style.display = data.data.verified ? "inline-block" : "none";
+      link.innerHTML = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].display_url : '';
+      link.href = typeof data.data.entities !== 'undefined' ? data.data.entities.url.urls[0].expanded_url : '';
+      followers.innerHTML = data.data.public_metrics.followers_count;
+      following.innerHTML = data.data.public_metrics.following_count;
     }
-    
-    hljs.highlightBlock(twitterReponse);// Reload the syntax in the block of code
+
+    hljs.highlightBlock(json);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);

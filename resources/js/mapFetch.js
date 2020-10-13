@@ -1,14 +1,14 @@
-const mapPOST = document.getElementById('mapPOST');
-var mapBlock = document.getElementById('mapBlock');
-var mapReponse = document.getElementById('mapReponse');
-const token = document.querySelector('meta[name="csrf-token"]').content;
+const map = document.querySelector('#map');
 
-
-mapPOST.addEventListener('submit', function(e) {
+map.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
+  const token = document.querySelector('meta[name="csrf-token"]').content;
+  var block = this.querySelector('.response-block');
+  var json = this.querySelector('.response-json');
+
   const url = this.getAttribute('action');
-  postData = new FormData(mapPOST);
+  postData = new FormData(this);
 
   fetch(url, {
     method: "POST",
@@ -23,19 +23,19 @@ mapPOST.addEventListener('submit', function(e) {
   )
   .then(data => {
     console.log(data);
-    mapReponse.innerHTML = JSON.stringify(data, undefined, 2);
+    json.innerHTML = JSON.stringify(data, undefined, 2);
 
     if (data.status != 'FAIL') {
-      mapBlock.className = "d-flex";
-      mapBlock.className = "response-block";
-      mapBlock.style.height = "300px";
+      block.className = "d-flex";
+      block.className = "response-block";
+      block.style.height = "300px";
       initMap(data[0].lat, data[0].lon);
     } else {
-      mapBlock.className = "d-none";
-      mapBlock.style.height = "0px";
+      block.className = "d-none";
+      block.style.height = "0px";
     }
 
-    hljs.highlightBlock(mapReponse);// Reload the syntax in the block of code
+    hljs.highlightBlock(json);// Reload the syntax in the block of code
   })
   .catch(err => {
     console.log(err);
