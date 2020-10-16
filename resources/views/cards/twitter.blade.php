@@ -5,16 +5,16 @@
       <div class="card-header">
         <h5 class="card-title">Twitter API</h5>
         <a href="https://twitter.com/" target="_blank">
-          <img class="card-icon" src="{{ asset('storage/img/Twitter_Logo_Blue.png') }}" alt="">
+          <img class="card-icon" src="{{ asset('storage/img/Twitter_Logo_Blue.png') }}">
         </a>
       </div>
       <div class="card-body">
-        <h5 class="">API description</h5>
+        <h5>API description</h5>
         <p class="card-text">Get the latest tweet from an user.</p>
 
         <div class="row">
           <fieldset class="form-group col-12">
-            <label for="search"><b>Username</b></label>
+            <label><b>Username</b></label>
             <input type="text" name="search" class="form-control" placeholder="Twitter username">
           </fieldset>
         </div>
@@ -28,7 +28,7 @@
                   <span class="response-title"></span>
                   <span><i class="response-verified fa fa-check-circle" aria-hidden="true" style="display: none;"></i></span>
                 </h4>
-                <img class="response-icon" src="" alt="" height="40px">
+                <img class="response-icon" height="40">
               </div>
               <h6 class="response-username mb-1 text-secondary"></h6>
               <small><a href="" class="response-link"></a></small>

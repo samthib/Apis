@@ -5,20 +5,20 @@
     <div class="card-header">
       <h5 class="card-title">Business API</h5>
       <a href="https://yelp.com/" target="_blank">
-        <img class="card-icon" src="{{ asset('storage/img/yelp.png') }}" alt="">
+        <img class="card-icon" src="{{ asset('storage/img/yelp.png') }}">
       </a>
     </div>
     <div class="card-body">
-      <h5 class="">API description</h5>
+      <h5>API description</h5>
       <p class="card-text">Search a list of business from Yelp famous website.</p>
 
         <div class="row">
           <fieldset class="form-group col-12">
-           <label for="search"><b>Search business</b></label>
+           <label><b>Search business</b></label>
             <input type="text" name="search" class="form-control" placeholder="Your business search ...">
           </fieldset>
           <fieldset class="form-group col-12">
-            <label for="location"><b>Business location</b></label>
+            <label><b>Business location</b></label>
             <input type="text" name="location" class="form-control" placeholder="Business location ...">
           </fieldset>
         </div>
@@ -31,7 +31,7 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <h3 class="response-title-1"></h3>
-                <img class="response-image-1 w-100 rounded" src="" alt="">
+                <img class="response-image-1 w-100 rounded">
                 <div class="w-100 d-flex flex-row justify-content-around align-items-baseline px-2">
                   <p>Adress : <span class="response-description-1"></span></p>
                   <h3>Note : <span class="response-rate-1 text-info"></span></h3>
@@ -40,7 +40,7 @@
               @for ($i=2; $i < 13; $i++)
                 <div class="carousel-item">
                   <h3 class="response-title-{{$i}}"></h3>
-                  <img class="response-image-{{$i}} w-100 rounded" src="" alt="">
+                  <img class="response-image-{{$i}} w-100 rounded">
                   <div class="w-100 d-flex flex-row justify-content-around align-items-baseline px-2">
                     <p class="response-description-{{$i}}"></p>
                     <h3>Note : <span class="response-rate-{{$i}} text-info"></span></h3>

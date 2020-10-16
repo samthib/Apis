@@ -5,28 +5,28 @@
     <div class="card-header">
       <h5 class="card-title">Map API</h5>
       <a href="https://openstreetmap.org/" target="_blank">
-        <img class="card-icon" src="{{ asset('storage/img/osm_logo.svg') }}" alt="">
+        <img class="card-icon" src="{{ asset('storage/img/osm_logo.svg') }}">
       </a>
     </div>
     <div class="card-body">
-      <h5 class="">API description</h5>
+      <h5>API description</h5>
       <p class="card-text">Interactive maps based on data by OpenStreetMap contributors.</p>
 
         <div class="row">
           <fieldset class="form-group col-6">
-            <label for="number"><b>Street number</b></label>
+            <label><b>Street number</b></label>
             <input type="number" name="number" class="form-control" placeholder="55">
           </fieldset>
           <fieldset class="form-group col-6">
-            <label for="street"><b>Street</b></label>
+            <label><b>Street</b></label>
             <input type="text" name="street" class="form-control" placeholder="5th Avenue">
           </fieldset>
           <fieldset class="form-group col-6">
-            <label for="city"><b>City *</b></label>
+            <label><b>City *</b></label>
             <input type="text" name="city" class="form-control" placeholder="New York">
           </fieldset>
           <fieldset class="form-group col-6">
-            <label for="country"><b>Country</b></label>
+            <label><b>Country</b></label>
             <input type="text" name="country" class="form-control" placeholder="United States">
           </fieldset>
         </div>

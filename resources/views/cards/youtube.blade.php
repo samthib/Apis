@@ -5,16 +5,16 @@
     <div class="card-header">
       <h5 class="card-title">Youtube API</h5>
       <a href="https://youtube.com/" target="_blank">
-        <img class="card-icon" src="{{ asset('storage/img/logo-youtube.svg') }}" alt="">
+        <img class="card-icon" src="{{ asset('storage/img/logo-youtube.svg') }}">
       </a>
     </div>
     <div class="card-body">
-      <h5 class="">API description</h5>
+      <h5>API description</h5>
       <p class="card-text">Search a list of videos from Youtube website.</p>
 
         <div class="row">
           <fieldset class="form-group col-12">
-            <label for="search"><b>Search videos</b></label>
+            <label><b>Search videos</b></label>
             <input type="text" name="search" class="form-control" placeholder="Your youtube search ...">
           </fieldset>
         </div>
@@ -27,19 +27,19 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="response-frame-1 embed-responsive-item rounded-top" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe class="response-frame-1 embed-responsive-item rounded-top border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="response-frame-2 embed-responsive-item rounded-bottom" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe class="response-frame-2 embed-responsive-item rounded-bottom border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
               </div>
               @for ($i=3; $i < 13; $i+=2)
                 <div class="carousel-item">
                   <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="response-frame-{{$i}} embed-responsive-item rounded-top" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="response-frame-{{$i}} embed-responsive-item rounded-top border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </div>
                   <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="response-frame-{{$i+1}} embed-responsive-item rounded-bottom" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="response-frame-{{$i+1}} embed-responsive-item rounded-bottom border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </div>
                 </div>
               @endfor

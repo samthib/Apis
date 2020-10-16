@@ -4,14 +4,14 @@
     <div class="card-header">
       <h5 class="card-title">News API</h5>
       <a href="https://newsapi.org/" target="_blank">
-        <img class="card-icon" src="{{ asset('storage/img/news.png') }}" alt="">
+        <img class="card-icon" src="{{ asset('storage/img/news.png') }}">
       </a>
     </div>
     <div class="card-body">
-      <h5 class="">API description</h5>
+      <h5>API description</h5>
       <p class="card-text">Get weather and weather forecasts for multiple cities.</p>
 
-      <form class="" id="weatherPOST" action="{{ route('fetch.weather') }}">
+      <form id="weatherPOST" action="{{ route('fetch.weather') }}">
         <div class="row">
           <fieldset class="form-group col-12">
             <label for="city"><b>City</b></label>
@@ -32,7 +32,7 @@
       <div class="my-2">
         <div id="weatherBlock" class="justify-content-between response-block" style="display: none;">
           <h4 id="weatherResult" class="col-md-4 align-self-center"></h4>
-          <img id="weatherIcon" class="col-md-4 align-self-center" src="" alt="">
+          <img id="weatherIcon" class="col-md-4 align-self-center">
           <h3 id="weatherRate" class="col-md-4 align-self-center"></h3>
         </div>
       </div>

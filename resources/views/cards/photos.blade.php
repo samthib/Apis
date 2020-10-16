@@ -5,7 +5,7 @@
     <div class="card-header">
       <h5 class="card-title">Photos API</h5>
       <a href="https://flickr.com/" target="_blank">
-        <img class="card-icon" src="{{ asset('storage/img/Flickr.png') }}" alt="">
+        <img class="card-icon" src="{{ asset('storage/img/Flickr.png') }}">
       </a>
     </div>
     <div class="card-body">
@@ -14,7 +14,7 @@
 
         <div class="row">
           <fieldset class="form-group col-12">
-            <label for="search"><b>Search videos</b></label>
+            <label><b>Search videos</b></label>
             <input type="text" name="search" class="form-control" placeholder="Your photos search ...">
           </fieldset>
         </div>
@@ -26,12 +26,12 @@
           <div id="carouselPhotosControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="response-image-1 w-100 rounded" src="" alt="">
+                <img class="response-image-1 w-100 rounded">
                 <h4 class="response-title-1"></h4>
               </div>
               @for ($i=2; $i < 13; $i++)
                 <div class="carousel-item">
-                  <img class="response-image-{{$i}} w-100 rounded" src="" alt="">
+                  <img class="response-image-{{$i}} w-100 rounded">
                   <h4 class="response-title-{{$i}}"></h4>
                 </div>
               @endfor

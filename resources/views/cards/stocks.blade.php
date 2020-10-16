@@ -5,16 +5,16 @@
       <div class="card-header">
         <h5 class="card-title">Stock Price API</h5>
         <a href="https://finnhub.io/" target="_blank">
-          <img class="card-icon" src="{{ asset('storage/img/logo-gradient2-finnhub.png') }}" alt="">
+          <img class="card-icon" src="{{ asset('storage/img/logo-gradient2-finnhub.png') }}">
         </a>
       </div>
       <div class="card-body">
-        <h5 class="">API description</h5>
+        <h5>API description</h5>
         <p class="card-text">Provide API for realtime stock data, forex and crypto.</p>
 
         <div class="row">
           <fieldset class="form-group col-12">
-            <label for="stock"><b>Stock symbol (US market)</b></label>
+            <label><b>Stock symbol (US market)</b></label>
             <input type="text" name="stock" class="form-control" placeholder="AAPL">
           </fieldset>
         </div>

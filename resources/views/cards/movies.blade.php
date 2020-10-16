@@ -5,7 +5,7 @@
     <div class="card-header">
       <h5 class="card-title">Movies Database API</h5>
       <a href="https://www.themoviedb.org/" target="_blank">
-        <img class="card-icon" src="{{ asset('storage/img/blue_square_tmdb.svg') }}" alt="">
+        <img class="card-icon" src="{{ asset('storage/img/blue_square_tmdb.svg') }}">
       </a>
     </div>
     <div class="card-body">
@@ -14,7 +14,7 @@
 
         <div class="row">
           <fieldset class="form-group col-12">
-            <label for="search"><b>Search movies</b></label>
+            <label><b>Search movies</b></label>
             <input type="text" name="search" class="form-control" placeholder="Your movies search ...">
           </fieldset>
         </div>
@@ -24,7 +24,7 @@
         <div class="response-block flex-column justify-content-between align-items-center" style="display: none;">
 
           <h3 class="response-title px-2"></h3>
-          <img class="response-image w-100 h-auto rounded" src="" alt="">
+          <img class="response-image w-100 h-auto rounded">
           <h4 class="px-2">Overview</h4>
           <p class="response-description px-2"></p>
           <div class="w-100 d-flex flex-row justify-content-around align-items-baseline px-2">

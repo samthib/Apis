@@ -5,25 +5,25 @@
     <div class="card-header">
       <h5 class="card-title">Weather API</h5>
       <a href="https://openweathermap.org/" target="_blank">
-        <img class="card-icon" src="{{ asset('storage/img/logo_white_cropped.png') }}" alt="">
+        <img class="card-icon" src="{{ asset('storage/img/logo_white_cropped.png') }}">
       </a>
     </div>
     <div class="card-body">
-      <h5 class="">API description</h5>
+      <h5>API description</h5>
       <p class="card-text">Get weather and weather forecasts for multiple cities.</p>
 
         <div class="row">
           <fieldset class="form-group col-12">
-            <label for="city"><b>City</b></label>
-            <input type="text" name="city" class="form-control" placeholder="London, UK">
+            <label><b>City</b></label>
+            <input id="city" type="text" name="city" class="form-control" placeholder="London, UK">
           </fieldset>
           <fieldset class="form-group col-6">
-            <label for="latitude"><b>Latitude</b></label>
-            <input type="number" name="latitude" class="form-control" step="0.01" placeholder="51.51">
+            <label><b>Latitude</b></label>
+            <input id="latitude" type="number" name="latitude" class="form-control" step="0.01" placeholder="51.51">
           </fieldset>
           <fieldset class="form-group col-6">
-            <label for="longitude"><b>Longitude</b></label>
-            <input type="number" name="longitude" class="form-control" step="0.01" placeholder="-0.13">
+            <label><b>Longitude</b></label>
+            <input id="longitude" type="number" name="longitude" class="form-control" step="0.01" placeholder="-0.13">
           </fieldset>
         </div>
         <button type="submit" class="btn btn-info">Submit</button>
@@ -31,7 +31,7 @@
       <div class="my-2">
         <div class="response-block row m-0 align-items-center" style="display: none;">
           <h4 class="response-result col-md-4"></h4>
-          <img class="response-icon col-md-4" src="" alt="">
+          <img class="response-icon col-md-4">
           <h3 class="response-rate col-md-4"></h3>
         </div>
       </div>

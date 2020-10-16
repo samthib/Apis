@@ -5,20 +5,20 @@
     <div class="card-header">
       <h5 class="card-title">Currency Converter API</h5>
       <a href="https://fixer.io/" target="_blank">
-        <img class="card-icon" src="{{ asset('storage/img/fixer_money_light.png') }}" alt="">
+        <img class="card-icon" src="{{ asset('storage/img/fixer_money_light.png') }}">
       </a>
     </div>
     <div class="card-body">
-      <h5 class="">API description</h5>
+      <h5>API description</h5>
       <p class="card-text">Provides exchange rates based on the official banks datas.</p>
 
         <div class="row">
           <fieldset class="form-group col-6">
-            <label for="quantity"><b>Amount &euro;</b></label>
+            <label><b>Amount &euro;</b></label>
             <input type="number" name="quantity" class="form-control" placeholder="100" min="0">
           </fieldset>
           <fieldset class="form-group col-6">
-            <label for="symbol"><b>To</b></label>
+            <label><b>To</b></label>
             <select class="form-control" name="symbol">
               @foreach ($symbols as $key => $symbol)
                 <option value="{{ $key }}">{{ $symbol }}</option>
