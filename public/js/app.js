@@ -50222,7 +50222,7 @@ search.querySelector('form').addEventListener('submit', function (e) {
     if (data.status != 'FAIL') {
       block.style.display = "flex";
       title.innerHTML = data.Heading;
-      icon.src = data.Image;
+      icon.src = "https://duckduckgo.com/" + data.Image;
       link.innerHTML = typeof data.Results[0] !== 'undefined' ? data.Results[0].Text : '';
       link.href = typeof data.Results[0] !== 'undefined' ? data.Results[0].FirstURL : '';
       description.innerHTML = data.AbstractText;
