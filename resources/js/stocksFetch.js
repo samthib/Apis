@@ -38,9 +38,9 @@ stocks.querySelector('form').addEventListener('submit', function(e) {
       symbol.innerHTML = data.symbol;
       rate.innerHTML = data.c;
       if (data.change >= 0) {
-        result.innerHTML = "<span class='text-success'><b>&and;</b> "+data.percentchange+"% "+"<small>("+data.change+")</small></span>";
+        result.innerHTML = "<span class='text-success'><b>&#9650;</b> "+data.percentchange+"% "+"<small>("+data.change+")</small></span>";
       } else {
-        result.innerHTML = "<span class='text-danger'><b>&or;</b> "+data.percentchange+"% "+"<small>("+data.change+")</small></span>";
+        result.innerHTML = "<span class='text-danger'><b>&#9660;</b> "+data.percentchange+"% "+"<small>("+data.change+")</small></span>";
       }
       date.innerHTML = new Date(data.t * 1000).toDateString();// * 1000 to set in milliseconds.
       height.innerHTML = data.h;
@@ -54,4 +54,4 @@ stocks.querySelector('form').addEventListener('submit', function(e) {
   .catch(err => {
     console.log(err);
   });
-});
+});S
