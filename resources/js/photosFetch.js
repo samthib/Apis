@@ -1,6 +1,7 @@
 const photos = document.querySelector('#photos');
 
-photos.querySelector('form').addEventListener('submit', function(e) {
+if (photos) {
+  photos.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -47,3 +48,4 @@ photos.querySelector('form').addEventListener('submit', function(e) {
     console.log(err);
   });
 });
+}

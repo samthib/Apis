@@ -1,6 +1,7 @@
 const twitter = document.querySelector('#twitter');
 
-twitter.querySelector('form').addEventListener('submit', function(e) {
+if (twitter) {
+  twitter.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -54,3 +55,4 @@ twitter.querySelector('form').addEventListener('submit', function(e) {
     console.log(err);
   });
 });
+}

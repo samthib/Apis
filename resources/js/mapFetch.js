@@ -1,6 +1,7 @@
 const map = document.querySelector('#map');
 
-map.querySelector('form').addEventListener('submit', function(e) {
+if (map) {
+  map.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -66,4 +67,5 @@ function initMap(lat, lon) {
 
   // Marker
   var marker = L.marker([lat, lon]).addTo(myMap);
+}
 }

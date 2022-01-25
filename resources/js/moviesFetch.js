@@ -1,6 +1,7 @@
 const movie = document.querySelector('#movie');
 
-movie.querySelector('form').addEventListener('submit', function(e) {
+if (movie) {
+  movie.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -33,11 +34,11 @@ movie.querySelector('form').addEventListener('submit', function(e) {
 
     if (data.status != 'FAIL') {
       block.style.display = "flex";
-      title.innerHTML = data.results.[0].title;
-      image.src = 'https://image.tmdb.org/t/p/w500/'+data.results.[0].poster_path;
-      description.innerHTML = data.results.[0].overview;
-      date.innerHTML = data.results.[0].release_date;
-      rate.innerHTML = data.results.[0].vote_average;
+      title.innerHTML = data.results[0].title;
+      image.src = 'https://image.tmdb.org/t/p/w500/'+data.results[0].poster_path;
+      description.innerHTML = data.results[0].overview;
+      date.innerHTML = data.results[0].release_date;
+      rate.innerHTML = data.results[0].vote_average;
     }
 
     hljs.highlightBlock(json);// Reload the syntax in the block of code
@@ -46,3 +47,4 @@ movie.querySelector('form').addEventListener('submit', function(e) {
     console.log(err);
   });
 });
+}

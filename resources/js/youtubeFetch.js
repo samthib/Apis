@@ -1,6 +1,7 @@
 const youtube = document.querySelector('#youtube');
 
-youtube.querySelector('form').addEventListener('submit', function(e) {
+if (youtube) {
+  youtube.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -44,3 +45,4 @@ youtube.querySelector('form').addEventListener('submit', function(e) {
     console.log(err);
   });
 });
+}

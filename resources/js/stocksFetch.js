@@ -1,6 +1,7 @@
 const stocks = document.querySelector('#stocks');
 
-stocks.querySelector('form').addEventListener('submit', function(e) {
+if (stocks) {
+  stocks.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -54,4 +55,5 @@ stocks.querySelector('form').addEventListener('submit', function(e) {
   .catch(err => {
     console.log(err);
   });
-});S
+});
+}

@@ -1,6 +1,7 @@
 const verify = document.querySelector('#verify');
 
-verify.querySelector('form').addEventListener('submit', function(e) {
+if (verify) {
+  verify.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -49,3 +50,4 @@ verify.querySelector('form').addEventListener('submit', function(e) {
     console.log(err);
   });
 });
+}

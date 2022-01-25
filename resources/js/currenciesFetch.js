@@ -1,7 +1,8 @@
 const currencies = document.querySelector('#currencies');
 
-currencies.querySelector('form').addEventListener('submit', function(e) {
-  e.preventDefault();
+if (currencies) {
+  currencies.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
 
   const token = document.querySelector('meta[name="csrf-token"]').content;
   var block = this.querySelector('.response-block');
@@ -9,10 +10,10 @@ currencies.querySelector('form').addEventListener('submit', function(e) {
   var result = this.querySelector('.response-result');
   var rate = this.querySelector('.response-rate');
   var rateInverse = this.querySelector('.response-rate-inverse');
-
+  
   const url = this.getAttribute('action');
   postData = new FormData(this);
-
+  
   fetch(url, {
     method: "POST",
     headers: {
@@ -23,11 +24,11 @@ currencies.querySelector('form').addEventListener('submit', function(e) {
   })
   .then(response =>
     response.json()
-  )
+    )
   .then(data => {
     console.log(data);
     json.innerHTML = JSON.stringify(data, undefined, 2);
-
+    
     if (data.status != 'FAIL') {
       block.style.display = "block";
       
@@ -43,3 +44,4 @@ currencies.querySelector('form').addEventListener('submit', function(e) {
     console.log(err);
   });
 });
+}

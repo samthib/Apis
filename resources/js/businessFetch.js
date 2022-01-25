@@ -1,5 +1,6 @@
 const business = document.querySelector('#business');
 
+if (business) {
 business.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -41,7 +42,7 @@ business.querySelector('form').addEventListener('submit', function(e) {
       data.businesses.forEach((item, i) => {
         image[i+1].src = typeof item.id !== 'undefined' ? item.image_url : '';
         title[i+1].innerHTML = typeof item.id !== 'undefined' ? item.name : '';
-        description[i+1].innerHTML = typeof item.id !== 'undefined' ? item.location.display_address.[0]+'<br>'+item.location.display_address.[1]+'<br>'+item.location.display_address.[2]+'<br>' : '';
+        description[i+1].innerHTML = typeof item.id !== 'undefined' ? item.location.display_address[0]+'<br>'+item.location.display_address[1]+'<br>'+item.location.display_address[2]+'<br>' : '';
         rate[i+1].innerHTML = typeof item.id !== 'undefined' ? item.rating : '';
       });
     }
@@ -52,3 +53,4 @@ business.querySelector('form').addEventListener('submit', function(e) {
     console.log(err);
   });
 });
+}

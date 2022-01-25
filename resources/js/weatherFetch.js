@@ -1,6 +1,7 @@
 const weather = document.querySelector('#weather');
 
-weather.querySelector('form').addEventListener('submit', function(e) {
+if (weather) {
+  weather.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -41,3 +42,4 @@ weather.querySelector('form').addEventListener('submit', function(e) {
     console.log(err);
   });
 });
+}
