@@ -14,13 +14,13 @@
 
       @include('cards.photos')
 
-      @include('cards.search')
+      @include('cards.searches')
 
       @include('cards.currencies')
 
-      @include('cards.business')
+      @include('cards.businesses')
 
-      @include('cards.map')
+      @include('cards.maps')
 
       @include('cards.verify')
 
@@ -34,7 +34,7 @@
 
       @include('cards.news')
 
-      @include('cards.football')
+      @include('cards.footballs')
 
       @include('cards.travel')
 

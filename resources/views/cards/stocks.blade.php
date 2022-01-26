@@ -1,5 +1,5 @@
 <div class="col-md-6 col-xl-4" id="stocks">
-  <form action="{{ route('fetch.stocks') }}">
+  <form action="{{ route('stocks.fetch') }}">
     <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/stock-exchange.jpeg') }}');">
 
       <div class="card-header">

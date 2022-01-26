@@ -1,5 +1,5 @@
 <div class="col-md-6 col-xl-4" id="search">
-  <form action="{{ route('fetch.search') }}">
+  <form action="{{ route('searches.fetch') }}">
   <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/words1.jpg') }}');">
 
     <div class="card-header">

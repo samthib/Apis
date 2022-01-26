@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pages;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Mail;
 
@@ -10,7 +10,7 @@ use App\Mail\ContactEmail;
 
 use App\Contact;
 
-use App\Http\Requests\ContactRules;
+use App\Http\Requests\ContactRequests;
 
 
 class ContactController extends Controller
@@ -22,16 +22,16 @@ class ContactController extends Controller
      */
     public function create()
     {
-      return view('contact.create');
+      return view('pages.contact.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ContactRequests  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContactRules $request)
+    public function store(ContactRequests $request)
     {
       $validated = $request->validated();
 

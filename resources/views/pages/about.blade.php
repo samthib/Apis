@@ -46,7 +46,7 @@
             <p>When used in the context of web development, an API is typically defined as a set of specifications, such as <b>Hypertext Transfer Protocol (HTTP)</b> request messages, along with a definition of the structure of response messages, usually in an <b>Extensible Markup Language (XML)</b> or <b>JavaScript Object Notation (JSON)</b> format.</p>
             <p>An example might be a shipping company API that can be added to an eCommerce-focused website to facilitate ordering shipping services and automatically include current shipping rates, without the site developer having to enter the shipper's rate table into a web database. In the social media space, web APIs have allowed web communities to facilitate sharing content and data between communities and applications. In this way, content that is created in one place dynamically can be posted and updated to multiple locations on the web.</p>
 
-            <p><a class="btn btn-light" href="{{ route('fetch.index') }}" role="button">Back to main page &laquo;</a></p>
+            <p><a class="btn btn-light" href="{{ route('cards') }}" role="button">Back to main page &laquo;</a></p>
           </div>
         </div><!-- row -->
 

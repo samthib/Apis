@@ -1,5 +1,5 @@
 <div class="col-md-6 col-xl-4" id="twitter">
-  <form action="{{ route('fetch.twitter') }}">
+  <form action="{{ route('twitter.fetch') }}">
     <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/Twitter.jpg') }}')">
 
       <div class="card-header">

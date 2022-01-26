@@ -1,5 +1,5 @@
 <div class="col-md-6 col-xl-4" id="weather">
-  <form action="{{ route('fetch.weather') }}">
+  <form action="{{ route('weather.fetch') }}">
   <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/ciel_soleil_peu_nuageux.jpg') }}')">
 
     <div class="card-header">

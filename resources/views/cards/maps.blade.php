@@ -1,5 +1,5 @@
 <div class="col-md-6 col-xl-4" id="map">
-  <form action="{{ route('fetch.map') }}">
+  <form action="{{ route('maps.fetch') }}">
   <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/google-maps-t.jpg') }}')">
 
     <div class="card-header">

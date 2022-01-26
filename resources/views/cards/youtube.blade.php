@@ -1,5 +1,5 @@
 <div class="col-md-6 col-xl-4" id="youtube">
-  <form action="{{ route('fetch.youtube') }}">
+  <form action="{{ route('youtube.fetch') }}">
   <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/youtube.png') }}')">
 
     <div class="card-header">

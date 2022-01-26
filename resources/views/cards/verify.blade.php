@@ -1,5 +1,5 @@
 <div class="col-md-6 col-xl-4" id="verify">
-  <form action="{{ route('fetch.verify') }}">
+  <form action="{{ route('verify.fetch') }}">
   <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/computer-safety.jpg') }}');">
 
     <div class="card-header">
