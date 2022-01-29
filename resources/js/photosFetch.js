@@ -9,7 +9,7 @@ if (photos) {
   var json = this.querySelector('.response-json');
   var title = [];
   var image = [];
-  for (var i = 1; i < 13; i++) {
+  for (var i = 0; i < 12; i++) {
     title[i] = this.querySelector('.response-title-'+i);
     image[i] = this.querySelector('.response-image-'+i);
   }
@@ -37,8 +37,8 @@ if (photos) {
       block.style.display = "flex";
 
       data.photos.photo.forEach((item, i) => {
-        image[i+1].src = typeof item.id !== 'undefined' ? 'https://farm'+item.farm+'.staticflickr.com/'+item.server+'/'+item.id+'_'+item.secret+'_n.jpg' : '';
-        title[i+1].innerHTML = typeof item.id !== 'undefined' ? item.title : '';
+        image[i].src = typeof item.id !== 'undefined' ? 'https://farm'+item.farm+'.staticflickr.com/'+item.server+'/'+item.id+'_'+item.secret+'_n.jpg' : '';
+        title[i].innerHTML = typeof item.id !== 'undefined' ? item.title : '';
       });
     }
 

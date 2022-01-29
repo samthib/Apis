@@ -12,19 +12,19 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 /**
  * Routes for pages
  */
-Route::namespace('Pages')->group(function () {
+Route::namespace ('Pages')->group(function () {
     Route::get('/', 'CardController@index')->name('cards');
     Route::get('/features', 'FeatureController@index')->name('features');
     Route::get('/about', 'AboutController@index')->name('about');
 
     /**
-    * Routes for contact form
-    */
+     * Routes for contact form
+     */
     Route::get('/contact', 'ContactController@create')->name('contact.create');
     Route::post('/contact', 'ContactController@store')->name('contact.store');
 });
@@ -32,11 +32,12 @@ Route::namespace('Pages')->group(function () {
 /**
  * Routes for apis forms
  */
-Route::namespace('Cards')->group(function () {
+Route::namespace ('Cards')->group(function () {
     Route::post('/businesses', 'BusinessController@fetch')->name('businesses.fetch');
     Route::post('/currencies', 'CurrencyController@fetch')->name('currencies.fetch');
     Route::post('/maps', 'MapController@fetch')->name('maps.fetch');
     Route::post('/movies', 'MovieController@fetch')->name('movies.fetch');
+    Route::post('/news', 'NewController@fetch')->name('news.fetch');
     Route::post('/photos', 'PhotoController@fetch')->name('photos.fetch');
     Route::post('/searches', 'SearchController@fetch')->name('searches.fetch');
     Route::post('/stocks', 'StockController@fetch')->name('stocks.fetch');
@@ -44,6 +45,7 @@ Route::namespace('Cards')->group(function () {
     Route::post('/verify', 'VerifyController@fetch')->name('verify.fetch');
     Route::post('/weather', 'WeatherController@fetch')->name('weather.fetch');
     Route::post('/youtube', 'YoutubeController@fetch')->name('youtube.fetch');
+
 });
 
 Auth::routes();

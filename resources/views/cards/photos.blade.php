@@ -26,10 +26,10 @@
           <div id="carouselPhotosControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="response-image-1 w-100 rounded">
-                <h4 class="response-title-1"></h4>
+                <img class="response-image-0 w-100 rounded">
+                <h4 class="response-title-0"></h4>
               </div>
-              @for ($i=2; $i < 13; $i++)
+              @for ($i=1; $i < 12; $i++)
                 <div class="carousel-item">
                   <img class="response-image-{{$i}} w-100 rounded">
                   <h4 class="response-title-{{$i}}"></h4>

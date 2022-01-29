@@ -22,6 +22,7 @@
 
       <div class="my-2">
         <div class="response-block justify-content-between" style="display: none;">
+
           <div class="col-12 text-left">
             <div class="d-flex flex-wrap justify-content-between mx-0">
               <h4 class="response-title mb-1"></h4>
@@ -43,8 +44,8 @@
                 </li>
               @endfor
             </ul>
-
           </div>
+
         </div>
       </div>
 

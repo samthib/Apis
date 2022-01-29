@@ -1,4 +1,4 @@
-{{-- <div class="col-md-6 col-xl-4">
+<div class="col-md-6 col-xl-4">
   <div class="card m-1 m-md-4" style="background-image: url('{{ asset('storage/img/Facebook-Wallpaper-5.jpg') }}')">
 
     <div class="card-header">
@@ -11,7 +11,7 @@
       <h5>API description</h5>
       <p class="card-text">Get weather and weather forecasts for multiple cities.</p>
 
-      <form id="weatherPOST" action="{{ route('fetch.weather') }}">
+      <form id="weatherPOST" action="{{ route('weather.fetch') }}">
         <div class="row">
           <fieldset class="form-group col-12">
             <label for="city"><b>City</b></label>
@@ -46,4 +46,4 @@
       </a>
     </div>
   </div>
-</div> --}}
+</div>

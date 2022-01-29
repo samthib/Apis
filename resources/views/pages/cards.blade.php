@@ -28,17 +28,17 @@
 
       @include('cards.stocks')
 
-      {{-- @include('cards.instagram')
+      {{-- @include('cards.instagram') --}}
 
-      @include('cards.facebook')
+      {{-- @include('cards.facebook') --}}
 
       @include('cards.news')
 
-      @include('cards.footballs')
+      {{-- @include('cards.footballs') --}}
 
-      @include('cards.travel')
+      {{-- @include('cards.travel') --}}
 
-      @include('cards.flights') --}}
+      {{-- @include('cards.flights') --}}
 
     </div>
   </div>
